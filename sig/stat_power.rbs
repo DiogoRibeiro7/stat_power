@@ -1,0 +1,17 @@
+module StatPower
+  VERSION: String
+
+  class Result
+    attr_reader sample_size: Integer?
+    attr_reader power: Float?
+    attr_reader effect_size: Float?
+    attr_reader alpha: Float?
+
+    def initialize: (
+      sample_size: Integer?,
+      power: Float?,
+      effect_size: Float?,
+      alpha: Float?
+    ) -> void
+  end
+end

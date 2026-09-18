@@ -1,76 +1,94 @@
 # Roadmap
 
-## 0.1.x — Classical tests and numerical foundations
+## 0.1.x — CRAN pwr parity and numerical foundations
 
-- Core result and error types
-- Normal distribution utilities
-- Student t distribution utilities
-- Noncentral t distribution utilities
-- Root-finding infrastructure
-- One-sample t-test power
-- Paired t-test power
-- Two-sample t-test power
-- One-sample proportion power
-- Two-sample proportion power
-- Pearson correlation power
-- One-way ANOVA power
-- Chi-square power
-- Cohen's d, h, f, f², and w
-- Solve for sample size, power, or effect size where identifiable
-- Numerical validation against trusted reference implementations and published examples
+### Foundations
 
-## 0.2.x — Regression
+- [x] Core result and error types
+- [x] Standard normal distribution utilities
+- [x] Root-finding infrastructure
+- [x] Conventional Cohen effect-size lookup
+- [x] Normal mean power analysis equivalent to `pwr.norm.test`
+- [ ] Student t distribution utilities
+- [ ] Noncentral t distribution utilities
+- [ ] Chi-square and noncentral chi-square utilities
+- [ ] F and noncentral F utilities
 
-- Simple linear regression
-- Multiple regression
-- Incremental R²
+### pwr compatibility
+
+- [x] `pwr.norm.test`
+- [ ] `pwr.p.test`
+- [ ] `pwr.2p.test`
+- [ ] `pwr.2p2n.test`
+- [ ] `pwr.t.test`
+- [ ] `pwr.t2n.test`
+- [ ] `pwr.anova.test`
+- [ ] `pwr.r.test`
+- [ ] `pwr.chisq.test`
+- [ ] `pwr.f2.test`
+- [ ] `ES.h`
+- [ ] `ES.w1`
+- [ ] `ES.w2`
+- [ ] power-curve data equivalent to `plot.power.htest`
+
+Each migrated family must support the inverse problems exposed by the reference
+method and include numerical parity tests.
+
+## 0.2.x — Validation and usability
+
+- Automated parity fixtures generated from R `pwr`
+- Published Cohen examples
+- Cross-validation against statsmodels where applicable
+- Documented numerical tolerance policy
+- Stable result objects
+- User-facing method documentation
+- Benchmarks
+
+## 0.3.x — Beyond pwr: regression and richer designs
+
+- Additional regression power models
 - Partial and semi-partial correlation
+- Unequal allocation helpers
+- Attrition and dropout adjustments
 
-## 0.3.x — Equivalence and non-inferiority
+## 0.4.x — Equivalence and non-inferiority
 
 - TOST
 - One-sided non-inferiority tests
 - Equivalence for means and proportions
 
-## 0.4.x — Repeated measures
+## 0.5.x — Repeated and clustered designs
 
-- Within-subject designs
+- Repeated-measures designs
 - Mixed designs
-- Correlation and nonsphericity adjustments
-
-## 0.5.x — Clustered designs
-
 - Cluster-randomised trials
 - Design effects
 - Intra-cluster correlation
 - Unequal cluster sizes
 
-## 0.6.x — Practical design adjustments
-
-- Unequal allocation
-- Attrition
-- Dropout
-- Recruitment inflation
-
-## 0.7.x — Precision-based design
+## 0.6.x — Precision-based design
 
 - Confidence-interval width targets
 - Mean, proportion, and difference precision
 
-## 0.8.x — Simulation-based power
+## 0.7.x — Simulation-based power
 
 - User-defined simulation models
 - Monte Carlo uncertainty estimates
 - Reproducible random seeds
 - Parallel execution interface
 
-## 0.9.x — Validation and API hardening
+## 0.8.x — pwrss-inspired extensions
 
-- Cross-validation against R pwr
-- Cross-validation against statsmodels
-- Published textbook examples
-- Numerical tolerance policy
-- Performance benchmarks
+- Broader sample-size methods
+- Minimum detectable effects
+- Additional test families selected from mature reference implementations
+
+## 0.9.x — API hardening
+
+- Complete validation matrix
+- Performance review
+- Documentation audit
 - API stability review
 
 ## 1.0.0

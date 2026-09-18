@@ -1,6 +1,15 @@
 module StatPower
   VERSION: String
 
+  class Error < StandardError
+  end
+
+  class DomainError < Error
+  end
+
+  class ConvergenceError < Error
+  end
+
   class Result
     attr_reader sample_size: Integer?
     attr_reader power: Float?
@@ -13,5 +22,26 @@ module StatPower
       effect_size: Float?,
       alpha: Float?
     ) -> void
+  end
+
+  module Distributions
+    module Normal
+      def self.pdf: (Numeric x) -> Float
+      def self.cdf: (Numeric x) -> Float
+      def self.survival: (Numeric x) -> Float
+      def self.quantile: (Numeric probability) -> Float
+    end
+  end
+
+  module Solvers
+    module Bisection
+      def self.solve: (
+        lower: Numeric,
+        upper: Numeric,
+        ?absolute_tolerance: Float,
+        ?relative_tolerance: Float,
+        ?max_iterations: Integer
+      ) { (Float) -> Numeric } -> Float
+    end
   end
 end

@@ -18,11 +18,16 @@ Unless a method explicitly states otherwise, two-sided tests split \(\alpha\) eq
 
 ## Sample size
 
-A sample size is always reported as an integer and must satisfy the constraints of the design.
+For compatibility and numerical validation, solvers retain the continuous
+sample-size solution produced by the underlying power equation.
 
-When a numerical solution is non-integer, the library rounds upward to the smallest design-valid integer that attains at least the requested power.
+A result may additionally expose the smallest design-valid integer sample size
+not below that solution. This distinction is explicit: continuous values are
+useful for parity checks and mathematical work, while integer values are useful
+for study design.
 
-For two-group designs, total sample size and per-group sample size must be distinguished explicitly in the public API and documentation.
+For two-group designs, total sample size and per-group sample size must be
+distinguished explicitly in the public API and documentation.
 
 ## Effect sizes
 
@@ -44,7 +49,8 @@ Alternatives use explicit names:
 - `greater`
 - `less`
 
-Methods must not infer direction from the sign of an effect size unless that behaviour is mathematically intrinsic and documented.
+Compatibility layers may accept reference-package spellings such as
+`"two.sided"`, but results are normalised to the Ruby convention.
 
 ## Numerical solving
 
@@ -72,6 +78,11 @@ Tolerance values belong in tests or numerical configuration, not as undocumented
 
 Every implemented test family must include at least one independently reproducible validation source, preferably two.
 
-Suitable references include peer-reviewed formulas, established statistical textbooks, R implementations, Python implementations, and published G*Power examples.
+CRAN `pwr` is the initial compatibility target. Its documented statistical
+models and numerical results are reference points, but `stat_power` uses an
+independent native Ruby implementation.
+
+Suitable additional references include peer-reviewed formulas, established
+statistical textbooks, Python implementations, and published G*Power examples.
 
 Agreement with another software package is evidence of consistency, not a substitute for verifying the underlying mathematics.

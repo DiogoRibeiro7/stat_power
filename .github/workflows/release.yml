@@ -4,6 +4,12 @@ on:
   push:
     tags:
       - "v*"
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: "Existing release tag to publish, for example v0.1.0.alpha.1"
+        required: true
+        type: string
 
 jobs:
   release:
@@ -15,8 +21,30 @@ jobs:
       id-token: write
 
     steps:
+      - name: Resolve release tag
+        id: release_ref
+        shell: bash
+        env:
+          INPUT_TAG: ${{ inputs.tag }}
+        run: |
+          set -euo pipefail
+
+          if [[ "${GITHUB_EVENT_NAME}" == "workflow_dispatch" ]]; then
+            RELEASE_TAG="${INPUT_TAG}"
+          else
+            RELEASE_TAG="${GITHUB_REF_NAME}"
+          fi
+
+          if [[ -z "${RELEASE_TAG}" || "${RELEASE_TAG}" != v* ]]; then
+            echo "Release tag must start with v."
+            exit 1
+          fi
+
+          echo "release_tag=${RELEASE_TAG}" >> "${GITHUB_OUTPUT}"
+
       - uses: actions/checkout@v5
         with:
+          ref: ${{ steps.release_ref.outputs.release_tag }}
           fetch-depth: 0
           persist-credentials: false
 
@@ -28,20 +56,24 @@ jobs:
 
       - name: Validate release tag
         shell: bash
+        env:
+          RELEASE_TAG: ${{ steps.release_ref.outputs.release_tag }}
         run: |
           set -euo pipefail
 
           VERSION="$(ruby -Ilib -rstat_power/version -e 'print StatPower::VERSION')"
           EXPECTED_TAG="v${VERSION}"
 
-          if [[ "${GITHUB_REF_NAME}" != "${EXPECTED_TAG}" ]]; then
-            echo "Tag ${GITHUB_REF_NAME} does not match gem version ${VERSION}."
+          if [[ "${RELEASE_TAG}" != "${EXPECTED_TAG}" ]]; then
+            echo "Tag ${RELEASE_TAG} does not match gem version ${VERSION}."
             echo "Expected tag: ${EXPECTED_TAG}"
             exit 1
           fi
 
-          git fetch origin main
-          if ! git merge-base --is-ancestor "${GITHUB_SHA}" origin/main; then
+          git fetch origin main --tags --force
+          TAG_COMMIT="$(git rev-list -n 1 "${RELEASE_TAG}")"
+
+          if ! git merge-base --is-ancestor "${TAG_COMMIT}" origin/main; then
             echo "Release tag must point to a commit contained in main."
             exit 1
           fi
@@ -51,23 +83,53 @@ jobs:
           bundle exec rspec
           bundle exec rubocop
           bundle exec rbs validate
+
+      - name: Build gem
+        id: build
+        shell: bash
+        run: |
+          set -euo pipefail
+
           gem build stat_power.gemspec
+          GEM_FILE="$(ls -1 stat_power-*.gem | head -n 1)"
+
+          if [[ -z "${GEM_FILE}" ]]; then
+            echo "No gem artifact was produced."
+            exit 1
+          fi
+
+          echo "gem_file=${GEM_FILE}" >> "${GITHUB_OUTPUT}"
+
+      - name: Configure RubyGems trusted publishing credentials
+        uses: rubygems/configure-rubygems-credentials@dc5a8d8553e6ee01fc26761a49e99e733d17954a
 
       - name: Publish to RubyGems
-        uses: rubygems/release-gem@v1
+        shell: bash
+        env:
+          GEM_FILE: ${{ steps.build.outputs.gem_file }}
+        run: |
+          set -euo pipefail
+          gem push "${GEM_FILE}"
 
       - name: Create GitHub release
         env:
           GH_TOKEN: ${{ github.token }}
+          RELEASE_TAG: ${{ steps.release_ref.outputs.release_tag }}
         shell: bash
         run: |
           set -euo pipefail
 
           VERSION="$(ruby -Ilib -rstat_power/version -e 'print StatPower::VERSION')"
+
+          if gh release view "${RELEASE_TAG}" >/dev/null 2>&1; then
+            echo "GitHub release ${RELEASE_TAG} already exists."
+            exit 0
+          fi
+
           RELEASE_ARGS=(
-            "${GITHUB_REF_NAME}"
+            "${RELEASE_TAG}"
             "--verify-tag"
-            "--title" "${GITHUB_REF_NAME}"
+            "--title" "${RELEASE_TAG}"
             "--generate-notes"
           )
 

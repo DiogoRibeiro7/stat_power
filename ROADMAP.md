@@ -19,7 +19,7 @@
 - [x] `pwr.norm.test`
 - [x] `pwr.p.test`
 - [x] `pwr.2p.test`
-- [ ] `pwr.2p2n.test`
+- [x] `pwr.2p2n.test`
 - [ ] `pwr.t.test`
 - [ ] `pwr.t2n.test`
 - [ ] `pwr.anova.test`

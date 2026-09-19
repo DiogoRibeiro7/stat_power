@@ -30,3 +30,5 @@ All notable changes to this project will be documented in this file.
 - One-sample, paired, and equal-size two-sample t-test power analysis compatible with `pwr.t.test`
 - Unequal-size two-sample t-test power analysis compatible with `pwr.t2n.test`
 - Pearson correlation power analysis compatible with `pwr.r.test`
+- Central F PDF, CDF, survival, and quantile utilities
+- Noncentral F CDF and survival utilities

@@ -9,7 +9,7 @@ RSpec.describe StatPower::UnequalPowerResult do
       effect_size: 0.3,
       alpha: 0.05,
       alternative: :two_sided,
-      method: "example"
+      analysis_method: "example"
     )
   end
 

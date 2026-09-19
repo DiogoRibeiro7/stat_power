@@ -6,6 +6,9 @@ All notable changes to this project will be documented in this file.
 
 ### Added
 
+- General linear-model power analysis compatible with `pwr.f2.test`
+- Dedicated `F2Result` with implied total sample-size helpers
+
 - Balanced one-way ANOVA power analysis compatible with `pwr.anova.test`
 - Dedicated ANOVA result object with per-group and total sample-size helpers
 

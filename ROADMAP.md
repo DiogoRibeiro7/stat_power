@@ -21,7 +21,7 @@
 - [x] `pwr.2p.test`
 - [x] `pwr.2p2n.test`
 - [x] `pwr.t.test`
-- [ ] `pwr.t2n.test`
+- [x] `pwr.t2n.test`
 - [ ] `pwr.anova.test`
 - [ ] `pwr.r.test`
 - [ ] `pwr.chisq.test`

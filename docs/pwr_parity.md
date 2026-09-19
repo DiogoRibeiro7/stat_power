@@ -17,7 +17,7 @@ reference points.
 | `pwr.2p.test` | `StatPower::Proportion.two_sample` | Implemented |
 | `pwr.2p2n.test` | `StatPower::Proportion.two_sample_unequal` | Implemented |
 | `pwr.t.test` | `StatPower::TTest.one_sample`, `.paired`, `.two_sample` | Implemented |
-| `pwr.t2n.test` | unequal-size two-sample t power | Planned |
+| `pwr.t2n.test` | `StatPower::TTest.two_sample_unequal` | Implemented |
 | `pwr.anova.test` | balanced one-way ANOVA power | Planned |
 | `pwr.r.test` | correlation power | Planned |
 | `pwr.chisq.test` | chi-square power | Planned |

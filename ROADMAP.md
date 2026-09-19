@@ -17,8 +17,8 @@
 ### pwr compatibility
 
 - [x] `pwr.norm.test`
-- [ ] `pwr.p.test`
-- [ ] `pwr.2p.test`
+- [x] `pwr.p.test`
+- [x] `pwr.2p.test`
 - [ ] `pwr.2p2n.test`
 - [ ] `pwr.t.test`
 - [ ] `pwr.t2n.test`
@@ -26,7 +26,7 @@
 - [ ] `pwr.r.test`
 - [ ] `pwr.chisq.test`
 - [ ] `pwr.f2.test`
-- [ ] `ES.h`
+- [x] `ES.h`
 - [ ] `ES.w1`
 - [ ] `ES.w2`
 - [ ] power-curve data equivalent to `plot.power.htest`

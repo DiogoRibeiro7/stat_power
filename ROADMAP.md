@@ -12,7 +12,7 @@
 - [x] Student t distribution utilities
 - [x] Noncentral t distribution utilities
 - [ ] Chi-square and noncentral chi-square utilities
-- [ ] F and noncentral F utilities
+- [x] F and noncentral F utilities
 
 ### pwr compatibility
 

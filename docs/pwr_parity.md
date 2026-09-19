@@ -15,7 +15,7 @@ reference points.
 | `cohen.ES` | `StatPower::EffectSize::Conventional.resolve` | Implemented for conventional values |
 | `pwr.p.test` | `StatPower::Proportion.one_sample` | Implemented |
 | `pwr.2p.test` | `StatPower::Proportion.two_sample` | Implemented |
-| `pwr.2p2n.test` | unequal-size two-sample proportion power | Planned |
+| `pwr.2p2n.test` | `StatPower::Proportion.two_sample_unequal` | Implemented |
 | `pwr.t.test` | one-sample, paired, and equal-size two-sample t power | Planned |
 | `pwr.t2n.test` | unequal-size two-sample t power | Planned |
 | `pwr.anova.test` | balanced one-way ANOVA power | Planned |

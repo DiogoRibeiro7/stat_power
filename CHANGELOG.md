@@ -21,3 +21,5 @@ All notable changes to this project will be documented in this file.
 - Cohen's h effect-size calculation for proportions
 - One-sample proportion power analysis compatible with `pwr.p.test`
 - Equal-size two-sample proportion power analysis compatible with `pwr.2p.test`
+- Unequal-size two-sample proportion power analysis compatible with `pwr.2p2n.test`
+- Dedicated result object for unequal two-group designs

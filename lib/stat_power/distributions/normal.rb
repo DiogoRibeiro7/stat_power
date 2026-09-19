@@ -87,7 +87,7 @@ module StatPower
         validate_probability!(p)
 
         return -Float::INFINITY if p.zero?
-        return Float::INFINITY if p == 1.0
+        return Float::INFINITY if p >= 1.0
 
         if p < LOWER_TAIL
           lower_tail_quantile(p)

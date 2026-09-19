@@ -35,7 +35,7 @@ module StatPower
         power:,
         alternative:,
         information_factor: 1.0,
-        method: "proportion power calculation for binomial distribution (arcsine transformation)"
+        analysis_method: "proportion power calculation for binomial distribution (arcsine transformation)"
       )
     end
 
@@ -59,11 +59,184 @@ module StatPower
         power:,
         alternative:,
         information_factor: 0.5,
-        method: "difference of proportion power calculation for binomial distribution (arcsine transformation)"
+        analysis_method: "difference of proportion power calculation for binomial distribution (arcsine transformation)"
       )
     end
 
-    def solve(effect_size:, sample_size:, alpha:, power:, alternative:, information_factor:, method:)
+    # Power analysis for two proportions with unequal sample sizes.
+    #
+    # Exactly one of effect_size, sample_size1, sample_size2, alpha, and power
+    # must be nil.
+    #
+    # @return [StatPower::UnequalPowerResult]
+    def two_sample_unequal(
+      effect_size: nil,
+      sample_size1: nil,
+      sample_size2: nil,
+      alpha: 0.05,
+      power: nil,
+      alternative: :two_sided
+    )
+      ensure_one_missing!(effect_size, sample_size1, sample_size2, alpha, power)
+
+      alternative = normalize_alternative(alternative)
+      effect_size = normalize_effect_size(effect_size)
+      sample_size1 = optional_float(sample_size1)
+      sample_size2 = optional_float(sample_size2)
+      alpha = optional_float(alpha)
+      power = optional_float(power)
+
+      validate_unequal_known_values!(
+        effect_size:,
+        sample_size1:,
+        sample_size2:,
+        alpha:,
+        power:
+      )
+
+      effect_size, sample_size1, sample_size2, alpha, power =
+        solve_unequal_missing(
+          effect_size:,
+          sample_size1:,
+          sample_size2:,
+          alpha:,
+          power:,
+          alternative:
+        )
+
+      UnequalPowerResult.new(
+        sample_size1:,
+        sample_size2:,
+        power:,
+        effect_size:,
+        alpha:,
+        alternative:,
+        analysis_method: "difference of proportion power calculation for unequal sample sizes"
+      )
+    end
+
+    def solve_unequal_missing(
+      effect_size:,
+      sample_size1:,
+      sample_size2:,
+      alpha:,
+      power:,
+      alternative:
+    )
+      if power.nil?
+        power = unequal_power_for(
+          effect_size:,
+          sample_size1:,
+          sample_size2:,
+          alpha:,
+          alternative:
+        )
+      elsif effect_size.nil?
+        effect_size = solve_unequal_effect_size(
+          sample_size1:,
+          sample_size2:,
+          alpha:,
+          power:,
+          alternative:
+        )
+      elsif sample_size1.nil?
+        sample_size1 = solve_unequal_sample_size(
+          fixed_sample_size: sample_size2,
+          effect_size:,
+          alpha:,
+          power:,
+          alternative:
+        )
+      elsif sample_size2.nil?
+        sample_size2 = solve_unequal_sample_size(
+          fixed_sample_size: sample_size1,
+          effect_size:,
+          alpha:,
+          power:,
+          alternative:
+        )
+      elsif alpha.nil?
+        alpha = solve_unequal_alpha(
+          effect_size:,
+          sample_size1:,
+          sample_size2:,
+          power:,
+          alternative:
+        )
+      end
+
+      [effect_size, sample_size1, sample_size2, alpha, power]
+    end
+    private_class_method :solve_unequal_missing
+
+    def unequal_power_for(effect_size:, sample_size1:, sample_size2:, alpha:, alternative:)
+      effect = alternative == :two_sided ? effect_size.abs : effect_size
+      information = (sample_size1 * sample_size2) / (sample_size1 + sample_size2)
+      noncentrality = effect * Math.sqrt(information)
+
+      case alternative
+      when :two_sided
+        critical = Distributions::Normal.quantile(1.0 - (alpha / 2.0))
+        Distributions::Normal.survival(critical - noncentrality) +
+          Distributions::Normal.cdf(-critical - noncentrality)
+      when :greater
+        critical = Distributions::Normal.quantile(1.0 - alpha)
+        Distributions::Normal.survival(critical - noncentrality)
+      when :less
+        critical = Distributions::Normal.quantile(alpha)
+        Distributions::Normal.cdf(critical - noncentrality)
+      end
+    end
+    private_class_method :unequal_power_for
+
+    def solve_unequal_effect_size(sample_size1:, sample_size2:, alpha:, power:, alternative:)
+      lower, upper = EFFECT_SIZE_BOUNDS.fetch(alternative)
+
+      Solvers::Bisection.solve(lower:, upper:) do |candidate|
+        unequal_power_for(
+          effect_size: candidate,
+          sample_size1:,
+          sample_size2:,
+          alpha:,
+          alternative:
+        ) - power
+      end
+    end
+    private_class_method :solve_unequal_effect_size
+
+    def solve_unequal_sample_size(fixed_sample_size:, effect_size:, alpha:, power:, alternative:)
+      Solvers::Bisection.solve(
+        lower: SAMPLE_SIZE_LOWER,
+        upper: SAMPLE_SIZE_UPPER
+      ) do |candidate|
+        unequal_power_for(
+          effect_size:,
+          sample_size1: fixed_sample_size,
+          sample_size2: candidate,
+          alpha:,
+          alternative:
+        ) - power
+      end
+    end
+    private_class_method :solve_unequal_sample_size
+
+    def solve_unequal_alpha(effect_size:, sample_size1:, sample_size2:, power:, alternative:)
+      Solvers::Bisection.solve(
+        lower: PROBABILITY_EPSILON,
+        upper: 1.0 - PROBABILITY_EPSILON
+      ) do |candidate|
+        unequal_power_for(
+          effect_size:,
+          sample_size1:,
+          sample_size2:,
+          alpha: candidate,
+          alternative:
+        ) - power
+      end
+    end
+    private_class_method :solve_unequal_alpha
+
+    def solve(effect_size:, sample_size:, alpha:, power:, alternative:, information_factor:, analysis_method:)
       ensure_one_missing!(effect_size, sample_size, alpha, power)
 
       alternative = normalize_alternative(alternative)
@@ -89,7 +262,7 @@ module StatPower
         effect_size:,
         alpha:,
         alternative:,
-        method:
+        analysis_method:
       )
     end
     private_class_method :solve
@@ -210,9 +383,7 @@ module StatPower
     def normalize_effect_size(value)
       return nil if value.nil?
 
-      if value.is_a?(String) || value.is_a?(Symbol)
-        return EffectSize::Conventional.resolve(test: :p, size: value)
-      end
+      return EffectSize::Conventional.resolve(test: :p, size: value) if value.is_a?(String) || value.is_a?(Symbol)
 
       Float(value)
     rescue ArgumentError, TypeError
@@ -256,6 +427,28 @@ module StatPower
       raise StatPower::DomainError, "sample_size must be finite and at least 1"
     end
     private_class_method :validate_sample_size!
+
+    def validate_unequal_known_values!(
+      effect_size:,
+      sample_size1:,
+      sample_size2:,
+      alpha:,
+      power:
+    )
+      validate_finite!("effect_size", effect_size) if effect_size
+      validate_group_size!("sample_size1", sample_size1) if sample_size1
+      validate_group_size!("sample_size2", sample_size2) if sample_size2
+      validate_probability!("alpha", alpha) if alpha
+      validate_probability!("power", power) if power
+    end
+    private_class_method :validate_unequal_known_values!
+
+    def validate_group_size!(name, sample_size)
+      return if sample_size.finite? && sample_size >= 2.0
+
+      raise StatPower::DomainError, "#{name} must be finite and at least 2"
+    end
+    private_class_method :validate_group_size!
 
     def validate_probability!(name, value)
       return if value.finite? && value.positive? && value < 1.0

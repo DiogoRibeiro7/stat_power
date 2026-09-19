@@ -30,7 +30,7 @@ module StatPower
     attr_reader effect_size: Float
     attr_reader alpha: Float
     attr_reader alternative: Symbol
-    attr_reader method: String
+    attr_reader analysis_analysis_method: String
 
     def initialize: (
       sample_size: Float,
@@ -38,10 +38,35 @@ module StatPower
       effect_size: Float,
       alpha: Float,
       alternative: Symbol,
-      method: String
+      analysis_method: String
     ) -> void
 
     def required_sample_size: () -> Integer
+  end
+
+  class UnequalPowerResult
+    attr_reader sample_size1: Float
+    attr_reader sample_size2: Float
+    attr_reader power: Float
+    attr_reader effect_size: Float
+    attr_reader alpha: Float
+    attr_reader alternative: Symbol
+    attr_reader analysis_analysis_method: String
+
+    def initialize: (
+      sample_size1: Float,
+      sample_size2: Float,
+      power: Float,
+      effect_size: Float,
+      alpha: Float,
+      alternative: Symbol,
+      analysis_method: String
+    ) -> void
+
+    def required_sample_size1: () -> Integer
+    def required_sample_size2: () -> Integer
+    def total_sample_size: () -> Float
+    def required_total_sample_size: () -> Integer
   end
 
   module EffectSize
@@ -80,6 +105,15 @@ module StatPower
       ?power: Numeric | nil,
       ?alternative: Symbol | String
     ) -> PowerResult
+
+    def self.two_sample_unequal: (
+      ?effect_size: Numeric | Symbol | String | nil,
+      ?sample_size1: Numeric | nil,
+      ?sample_size2: Numeric | nil,
+      ?alpha: Numeric | nil,
+      ?power: Numeric | nil,
+      ?alternative: Symbol | String
+    ) -> UnequalPowerResult
   end
 
   module Distributions

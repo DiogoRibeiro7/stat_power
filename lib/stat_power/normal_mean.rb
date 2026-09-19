@@ -58,7 +58,7 @@ module StatPower
         effect_size:,
         alpha:,
         alternative:,
-        method: "normal mean with known variance"
+        analysis_method: "normal mean with known variance"
       )
     end
 

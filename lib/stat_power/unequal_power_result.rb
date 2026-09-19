@@ -9,7 +9,7 @@ module StatPower
     :effect_size,
     :alpha,
     :alternative,
-    :method
+    :analysis_method
   ) do
     # Smallest integer first-group size not below the continuous solution.
     #

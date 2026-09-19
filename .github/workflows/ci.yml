@@ -30,4 +30,5 @@ jobs:
         with:
           ruby-version: "3.3"
           bundler-cache: true
-      - run: bundle exec steep check
+      - run: bundle exec rbs validate
+      - run: ruby -Ilib -e 'require "stat_power"'

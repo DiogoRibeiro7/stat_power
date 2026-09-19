@@ -25,7 +25,7 @@
 - [x] `pwr.anova.test`
 - [x] `pwr.r.test`
 - [ ] `pwr.chisq.test`
-- [ ] `pwr.f2.test`
+- [x] `pwr.f2.test`
 - [x] `ES.h`
 - [ ] `ES.w1`
 - [ ] `ES.w2`

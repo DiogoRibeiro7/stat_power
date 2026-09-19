@@ -71,9 +71,26 @@ Pushing the tag triggers the release workflow. It validates that:
 - RBS signatures validate
 - the gem builds successfully
 
-The workflow then publishes to RubyGems using OIDC Trusted Publishing and
-creates a GitHub Release. Prerelease versions are marked as prereleases on
-GitHub automatically.
+The workflow requests short-lived RubyGems credentials through OIDC, pushes the
+already-built gem artifact with `gem push`, and creates a GitHub Release.
+Prerelease versions are marked as prereleases on GitHub automatically.
+
+## Retrying a failed first release
+
+If the release tag already exists but the workflow failed before RubyGems
+accepted the gem, **do not create another tag just to rerun the same alpha**.
+
+After the workflow fix is merged into `main`:
+
+1. Open **Actions → Release gem**.
+2. Choose **Run workflow**.
+3. Enter the existing tag, for example `v0.1.0.alpha.1`.
+4. Run the workflow from `main`.
+
+The manual dispatch checks out the existing tag and publishes that exact
+artifact while using the latest release workflow definition from `main`.
+
+Once `0.1.0.alpha.1` appears on RubyGems.org, that version is immutable.
 
 ## After publishing
 
@@ -95,10 +112,7 @@ The expected output for the first alpha is:
 0.1.0.alpha.1
 ```
 
-## Failed releases
-
-If the workflow fails before the RubyGems publishing step, fix the problem and
-move the release tag only if the version has not been published.
+## Failed releases after publication
 
 Once a version exists on RubyGems.org, do not overwrite or reuse that version.
 Increment the prerelease version, for example from `0.1.0.alpha.1` to

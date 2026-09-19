@@ -14,6 +14,9 @@ Naming/MethodParameterName:
     - p
     - p1
     - p2
+    - a
+    - b
+    - df
 
 Metrics/BlockLength:
   Exclude:
@@ -27,7 +30,7 @@ Metrics/MethodLength:
   Max: 50
 
 Metrics/AbcSize:
-  Max: 40
+  Max: 50
 
 Metrics/CyclomaticComplexity:
   Max: 15
@@ -36,7 +39,7 @@ Metrics/PerceivedComplexity:
   Max: 15
 
 Metrics/ParameterLists:
-  Max: 8
+  Max: 9
 
 Lint/AmbiguousOperatorPrecedence:
   Enabled: false

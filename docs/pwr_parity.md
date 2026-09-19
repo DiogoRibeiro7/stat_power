@@ -19,7 +19,7 @@ reference points.
 | `pwr.t.test` | `StatPower::TTest.one_sample`, `.paired`, `.two_sample` | Implemented |
 | `pwr.t2n.test` | `StatPower::TTest.two_sample_unequal` | Implemented |
 | `pwr.anova.test` | balanced one-way ANOVA power | Planned |
-| `pwr.r.test` | correlation power | Planned |
+| `pwr.r.test` | `StatPower::Correlation.solve` | Implemented |
 | `pwr.chisq.test` | chi-square power | Planned |
 | `pwr.f2.test` | general linear-model power | Planned |
 | `ES.h` | `StatPower::EffectSize::Proportion.cohen_h` | Implemented |

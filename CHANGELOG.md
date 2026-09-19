@@ -23,3 +23,7 @@ All notable changes to this project will be documented in this file.
 - Equal-size two-sample proportion power analysis compatible with `pwr.2p.test`
 - Unequal-size two-sample proportion power analysis compatible with `pwr.2p2n.test`
 - Dedicated result object for unequal two-group designs
+- Regularized incomplete beta special function
+- Adaptive Simpson quadrature
+- Central Student t PDF, CDF, survival, and quantile utilities
+- Noncentral Student t CDF and survival utilities

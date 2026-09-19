@@ -9,8 +9,8 @@
 - [x] Root-finding infrastructure
 - [x] Conventional Cohen effect-size lookup
 - [x] Normal mean power analysis equivalent to `pwr.norm.test`
-- [ ] Student t distribution utilities
-- [ ] Noncentral t distribution utilities
+- [x] Student t distribution utilities
+- [x] Noncentral t distribution utilities
 - [ ] Chi-square and noncentral chi-square utilities
 - [ ] F and noncentral F utilities
 

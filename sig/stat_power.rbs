@@ -116,12 +116,50 @@ module StatPower
     ) -> UnequalPowerResult
   end
 
+  module SpecialFunctions
+    module Beta
+      def self.regularized: (Numeric x, a: Numeric, b: Numeric) -> Float
+    end
+  end
+
+  module Integration
+    module AdaptiveSimpson
+      def self.integrate: (
+        lower: Numeric,
+        upper: Numeric,
+        ?tolerance: Numeric,
+        ?max_depth: Integer
+      ) { (Float) -> Numeric } -> Float
+    end
+  end
+
   module Distributions
     module Normal
       def self.pdf: (Numeric x) -> Float
       def self.cdf: (Numeric x) -> Float
       def self.survival: (Numeric x) -> Float
       def self.quantile: (Numeric probability) -> Float
+    end
+
+    module StudentT
+      def self.pdf: (Numeric x, degrees_of_freedom: Numeric) -> Float
+      def self.cdf: (Numeric x, degrees_of_freedom: Numeric) -> Float
+      def self.survival: (Numeric x, degrees_of_freedom: Numeric) -> Float
+      def self.quantile: (Numeric probability, degrees_of_freedom: Numeric) -> Float
+    end
+
+    module NoncentralT
+      def self.cdf: (
+        Numeric x,
+        degrees_of_freedom: Numeric,
+        noncentrality: Numeric
+      ) -> Float
+
+      def self.survival: (
+        Numeric x,
+        degrees_of_freedom: Numeric,
+        noncentrality: Numeric
+      ) -> Float
     end
   end
 

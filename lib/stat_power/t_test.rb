@@ -19,6 +19,12 @@ module StatPower
 
     DESIGNS = %i[one_sample paired two_sample].freeze
 
+    ANALYSIS_METHODS = {
+      one_sample: "one-sample t test power calculation",
+      paired: "paired t test power calculation",
+      two_sample: "two-sample t test power calculation"
+    }.freeze
+
     module_function
 
     # One-sample t-test power analysis.
@@ -267,14 +273,7 @@ module StatPower
     private_class_method :noncentrality_scale
 
     def analysis_method(design)
-      case design
-      when :one_sample
-        "one-sample t test power calculation"
-      when :paired
-        "paired t test power calculation"
-      when :two_sample
-        "two-sample t test power calculation"
-      end
+      ANALYSIS_METHODS.fetch(design)
     end
     private_class_method :analysis_method
 

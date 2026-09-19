@@ -35,7 +35,7 @@ module StatPower
         power:,
         alternative:,
         information_factor: 1.0,
-        method: "proportion power calculation for binomial distribution (arcsine transformation)"
+        analysis_method: "proportion power calculation for binomial distribution (arcsine transformation)"
       )
     end
 
@@ -59,7 +59,7 @@ module StatPower
         power:,
         alternative:,
         information_factor: 0.5,
-        method: "difference of proportion power calculation for binomial distribution (arcsine transformation)"
+        analysis_method: "difference of proportion power calculation for binomial distribution (arcsine transformation)"
       )
     end
 
@@ -111,7 +111,7 @@ module StatPower
         effect_size:,
         alpha:,
         alternative:,
-        method: "difference of proportion power calculation for unequal sample sizes"
+        analysis_method: "difference of proportion power calculation for unequal sample sizes"
       )
     end
 
@@ -236,7 +236,7 @@ module StatPower
     end
     private_class_method :solve_unequal_alpha
 
-    def solve(effect_size:, sample_size:, alpha:, power:, alternative:, information_factor:, method:)
+    def solve(effect_size:, sample_size:, alpha:, power:, alternative:, information_factor:, analysis_method:)
       ensure_one_missing!(effect_size, sample_size, alpha, power)
 
       alternative = normalize_alternative(alternative)
@@ -262,7 +262,7 @@ module StatPower
         effect_size:,
         alpha:,
         alternative:,
-        method:
+        analysis_method:
       )
     end
     private_class_method :solve

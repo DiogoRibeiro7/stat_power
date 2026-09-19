@@ -21,7 +21,7 @@ reference points.
 | `pwr.anova.test` | `StatPower::Anova.solve` | Implemented |
 | `pwr.r.test` | `StatPower::Correlation.solve` | Implemented |
 | `pwr.chisq.test` | chi-square power | Planned |
-| `pwr.f2.test` | general linear-model power | Planned |
+| `pwr.f2.test` | `StatPower::F2.solve` | Implemented |
 | `ES.h` | `StatPower::EffectSize::Proportion.cohen_h` | Implemented |
 | `ES.w1` | Cohen w for goodness of fit | Planned |
 | `ES.w2` | Cohen w for contingency tables | Planned |

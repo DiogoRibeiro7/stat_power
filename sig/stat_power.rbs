@@ -151,6 +151,16 @@ module StatPower
     ) -> UnequalPowerResult
   end
 
+  module Correlation
+    def self.solve: (
+      ?correlation: Numeric | Symbol | String | nil,
+      ?sample_size: Numeric | nil,
+      ?alpha: Numeric | nil,
+      ?power: Numeric | nil,
+      ?alternative: Symbol | String
+    ) -> PowerResult
+  end
+
   module SpecialFunctions
     module Beta
       def self.regularized: (Numeric x, a: Numeric, b: Numeric) -> Float

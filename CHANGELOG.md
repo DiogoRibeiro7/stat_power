@@ -28,3 +28,4 @@ All notable changes to this project will be documented in this file.
 - Central Student t PDF, CDF, survival, and quantile utilities
 - Noncentral Student t CDF and survival utilities
 - One-sample, paired, and equal-size two-sample t-test power analysis compatible with `pwr.t.test`
+- Unequal-size two-sample t-test power analysis compatible with `pwr.t2n.test`

@@ -17,6 +17,7 @@ require_relative "stat_power/normal_mean"
 require_relative "stat_power/proportion"
 require_relative "stat_power/t_test"
 require_relative "stat_power/t_test_unequal"
+require_relative "stat_power/correlation"
 
 module StatPower
 end

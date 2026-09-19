@@ -30,7 +30,7 @@ module StatPower
     attr_reader effect_size: Float
     attr_reader alpha: Float
     attr_reader alternative: Symbol
-    attr_reader method: String
+    attr_reader analysis_analysis_method: String
 
     def initialize: (
       sample_size: Float,
@@ -38,7 +38,7 @@ module StatPower
       effect_size: Float,
       alpha: Float,
       alternative: Symbol,
-      method: String
+      analysis_method: String
     ) -> void
 
     def required_sample_size: () -> Integer
@@ -51,7 +51,7 @@ module StatPower
     attr_reader effect_size: Float
     attr_reader alpha: Float
     attr_reader alternative: Symbol
-    attr_reader method: String
+    attr_reader analysis_analysis_method: String
 
     def initialize: (
       sample_size1: Float,
@@ -60,7 +60,7 @@ module StatPower
       effect_size: Float,
       alpha: Float,
       alternative: Symbol,
-      method: String
+      analysis_method: String
     ) -> void
 
     def required_sample_size1: () -> Integer

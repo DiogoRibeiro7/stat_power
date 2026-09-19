@@ -30,7 +30,7 @@ module StatPower
     attr_reader effect_size: Float
     attr_reader alpha: Float
     attr_reader alternative: Symbol
-    attr_reader analysis_analysis_method: String
+    attr_reader analysis_method: String
 
     def initialize: (
       sample_size: Float,
@@ -51,7 +51,7 @@ module StatPower
     attr_reader effect_size: Float
     attr_reader alpha: Float
     attr_reader alternative: Symbol
-    attr_reader analysis_analysis_method: String
+    attr_reader analysis_method: String
 
     def initialize: (
       sample_size1: Float,
@@ -74,7 +74,33 @@ module StatPower
       def self.resolve: (test: Symbol | String, size: Symbol | String) -> Float
     end
 
-    module Proportion
+    module TTest
+    def self.one_sample: (
+      ?effect_size: Numeric | Symbol | String | nil,
+      ?sample_size: Numeric | nil,
+      ?alpha: Numeric | nil,
+      ?power: Numeric | nil,
+      ?alternative: Symbol | String
+    ) -> PowerResult
+
+    def self.paired: (
+      ?effect_size: Numeric | Symbol | String | nil,
+      ?sample_size: Numeric | nil,
+      ?alpha: Numeric | nil,
+      ?power: Numeric | nil,
+      ?alternative: Symbol | String
+    ) -> PowerResult
+
+    def self.two_sample: (
+      ?effect_size: Numeric | Symbol | String | nil,
+      ?sample_size: Numeric | nil,
+      ?alpha: Numeric | nil,
+      ?power: Numeric | nil,
+      ?alternative: Symbol | String
+    ) -> PowerResult
+  end
+
+  module Proportion
       def self.cohen_h: (p1: Numeric, p2: Numeric) -> Float
     end
   end

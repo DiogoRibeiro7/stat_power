@@ -4,6 +4,7 @@ require_relative "stat_power/version"
 require_relative "stat_power/result"
 require_relative "stat_power/power_result"
 require_relative "stat_power/unequal_power_result"
+require_relative "stat_power/anova_result"
 require_relative "stat_power/errors"
 require_relative "stat_power/special_functions/beta"
 require_relative "stat_power/integration/adaptive_simpson"
@@ -20,6 +21,7 @@ require_relative "stat_power/proportion"
 require_relative "stat_power/t_test"
 require_relative "stat_power/t_test_unequal"
 require_relative "stat_power/correlation"
+require_relative "stat_power/anova"
 
 module StatPower
 end

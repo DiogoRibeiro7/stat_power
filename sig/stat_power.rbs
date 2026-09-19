@@ -69,6 +69,29 @@ module StatPower
     def required_total_sample_size: () -> Integer
   end
 
+  class AnovaResult
+    attr_reader groups: Float
+    attr_reader sample_size: Float
+    attr_reader power: Float
+    attr_reader effect_size: Float
+    attr_reader alpha: Float
+    attr_reader analysis_method: String
+
+    def initialize: (
+      groups: Float,
+      sample_size: Float,
+      power: Float,
+      effect_size: Float,
+      alpha: Float,
+      analysis_method: String
+    ) -> void
+
+    def required_groups: () -> Integer
+    def required_sample_size: () -> Integer
+    def total_sample_size: () -> Float
+    def required_total_sample_size: () -> Integer
+  end
+
   module EffectSize
     module Conventional
       def self.resolve: (test: Symbol | String, size: Symbol | String) -> Float
@@ -159,6 +182,16 @@ module StatPower
       ?power: Numeric | nil,
       ?alternative: Symbol | String
     ) -> PowerResult
+  end
+
+  module Anova
+    def self.solve: (
+      ?groups: Numeric | nil,
+      ?sample_size: Numeric | nil,
+      ?effect_size: Numeric | Symbol | String | nil,
+      ?alpha: Numeric | nil,
+      ?power: Numeric | nil
+    ) -> AnovaResult
   end
 
   module SpecialFunctions

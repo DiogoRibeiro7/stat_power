@@ -4,6 +4,11 @@ All notable changes to this project will be documented in this file.
 
 ## Unreleased
 
+### Added
+
+- Balanced one-way ANOVA power analysis compatible with `pwr.anova.test`
+- Dedicated ANOVA result object with per-group and total sample-size helpers
+
 ## 0.1.0.alpha.1 - 2026-09-19
 
 ### Added

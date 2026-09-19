@@ -32,3 +32,31 @@ jobs:
           bundler-cache: true
       - run: bundle exec rbs validate
       - run: ruby -Ilib -e 'require "stat_power"'
+
+  package:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: "3.3"
+          bundler-cache: true
+
+      - name: Build gem
+        run: gem build stat_power.gemspec
+
+      - name: Verify gem contents
+        run: |
+          GEM_FILE="$(ls stat_power-*.gem)"
+          gem specification "$GEM_FILE" name version files --yaml
+
+      - name: Install built gem
+        run: |
+          GEM_FILE="$(ls stat_power-*.gem)"
+          GEM_HOME="$RUNNER_TEMP/stat-power-gems" gem install "$GEM_FILE" --no-document
+
+      - name: Smoke test installed gem
+        run: |
+          export GEM_HOME="$RUNNER_TEMP/stat-power-gems"
+          export PATH="$GEM_HOME/bin:$PATH"
+          ruby -e 'require "stat_power"; result = StatPower::TTest.one_sample(effect_size: 0.5, sample_size: 30, alpha: 0.05); abort "invalid power" unless result.power > 0.0 && result.power < 1.0'

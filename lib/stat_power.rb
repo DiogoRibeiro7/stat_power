@@ -15,6 +15,7 @@ require_relative "stat_power/effect_size/conventional"
 require_relative "stat_power/effect_size/proportion"
 require_relative "stat_power/normal_mean"
 require_relative "stat_power/proportion"
+require_relative "stat_power/t_test"
 
 module StatPower
 end

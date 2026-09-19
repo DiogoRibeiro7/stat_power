@@ -13,8 +13,8 @@ reference points.
 | --- | --- | --- |
 | `pwr.norm.test` | `StatPower::NormalMean.solve` | Implemented |
 | `cohen.ES` | `StatPower::EffectSize::Conventional.resolve` | Implemented for conventional values |
-| `pwr.p.test` | one-sample proportion power | Planned |
-| `pwr.2p.test` | equal-size two-sample proportion power | Planned |
+| `pwr.p.test` | `StatPower::Proportion.one_sample` | Implemented |
+| `pwr.2p.test` | `StatPower::Proportion.two_sample` | Implemented |
 | `pwr.2p2n.test` | unequal-size two-sample proportion power | Planned |
 | `pwr.t.test` | one-sample, paired, and equal-size two-sample t power | Planned |
 | `pwr.t2n.test` | unequal-size two-sample t power | Planned |
@@ -22,7 +22,7 @@ reference points.
 | `pwr.r.test` | correlation power | Planned |
 | `pwr.chisq.test` | chi-square power | Planned |
 | `pwr.f2.test` | general linear-model power | Planned |
-| `ES.h` | Cohen h for proportions | Planned |
+| `ES.h` | `StatPower::EffectSize::Proportion.cohen_h` | Implemented |
 | `ES.w1` | Cohen w for goodness of fit | Planned |
 | `ES.w2` | Cohen w for contingency tables | Planned |
 | `plot.power.htest` | power-curve data generation | Planned |

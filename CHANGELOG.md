@@ -18,3 +18,6 @@ All notable changes to this project will be documented in this file.
 - Normal-mean power analysis compatible with `pwr.norm.test`
 - Conventional Cohen effect-size lookup
 - Continuous and integer-required sample-size reporting
+- Cohen's h effect-size calculation for proportions
+- One-sample proportion power analysis compatible with `pwr.p.test`
+- Equal-size two-sample proportion power analysis compatible with `pwr.2p.test`

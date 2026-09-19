@@ -8,7 +8,7 @@ module StatPower
     :effect_size,
     :alpha,
     :alternative,
-    :method
+    :analysis_method
   ) do
     # Smallest integer sample size that is at least the continuous solution.
     #

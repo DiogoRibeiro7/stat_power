@@ -92,6 +92,27 @@ module StatPower
     def required_total_sample_size: () -> Integer
   end
 
+  class F2Result
+    attr_reader numerator_df: Float
+    attr_reader denominator_df: Float
+    attr_reader power: Float
+    attr_reader effect_size: Float
+    attr_reader alpha: Float
+    attr_reader analysis_method: String
+
+    def initialize: (
+      numerator_df: Float,
+      denominator_df: Float,
+      power: Float,
+      effect_size: Float,
+      alpha: Float,
+      analysis_method: String
+    ) -> void
+
+    def total_sample_size: () -> Float
+    def required_total_sample_size: () -> Integer
+  end
+
   module EffectSize
     module Conventional
       def self.resolve: (test: Symbol | String, size: Symbol | String) -> Float
@@ -192,6 +213,16 @@ module StatPower
       ?alpha: Numeric | nil,
       ?power: Numeric | nil
     ) -> AnovaResult
+  end
+
+  module F2
+    def self.solve: (
+      ?numerator_df: Numeric | nil,
+      ?denominator_df: Numeric | nil,
+      ?effect_size: Numeric | Symbol | String | nil,
+      ?alpha: Numeric | nil,
+      ?power: Numeric | nil
+    ) -> F2Result
   end
 
   module SpecialFunctions

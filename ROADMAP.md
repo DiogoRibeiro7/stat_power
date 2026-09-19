@@ -23,7 +23,7 @@
 - [x] `pwr.t.test`
 - [x] `pwr.t2n.test`
 - [ ] `pwr.anova.test`
-- [ ] `pwr.r.test`
+- [x] `pwr.r.test`
 - [ ] `pwr.chisq.test`
 - [ ] `pwr.f2.test`
 - [x] `ES.h`

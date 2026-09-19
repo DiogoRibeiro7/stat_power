@@ -74,33 +74,7 @@ module StatPower
       def self.resolve: (test: Symbol | String, size: Symbol | String) -> Float
     end
 
-    module TTest
-    def self.one_sample: (
-      ?effect_size: Numeric | Symbol | String | nil,
-      ?sample_size: Numeric | nil,
-      ?alpha: Numeric | nil,
-      ?power: Numeric | nil,
-      ?alternative: Symbol | String
-    ) -> PowerResult
-
-    def self.paired: (
-      ?effect_size: Numeric | Symbol | String | nil,
-      ?sample_size: Numeric | nil,
-      ?alpha: Numeric | nil,
-      ?power: Numeric | nil,
-      ?alternative: Symbol | String
-    ) -> PowerResult
-
-    def self.two_sample: (
-      ?effect_size: Numeric | Symbol | String | nil,
-      ?sample_size: Numeric | nil,
-      ?alpha: Numeric | nil,
-      ?power: Numeric | nil,
-      ?alternative: Symbol | String
-    ) -> PowerResult
-  end
-
-  module Proportion
+    module Proportion
       def self.cohen_h: (p1: Numeric, p2: Numeric) -> Float
     end
   end
@@ -117,6 +91,41 @@ module StatPower
 
   module Proportion
     def self.one_sample: (
+      ?effect_size: Numeric | Symbol | String | nil,
+      ?sample_size: Numeric | nil,
+      ?alpha: Numeric | nil,
+      ?power: Numeric | nil,
+      ?alternative: Symbol | String
+    ) -> PowerResult
+
+    def self.two_sample: (
+      ?effect_size: Numeric | Symbol | String | nil,
+      ?sample_size: Numeric | nil,
+      ?alpha: Numeric | nil,
+      ?power: Numeric | nil,
+      ?alternative: Symbol | String
+    ) -> PowerResult
+
+    def self.two_sample_unequal: (
+      ?effect_size: Numeric | Symbol | String | nil,
+      ?sample_size1: Numeric | nil,
+      ?sample_size2: Numeric | nil,
+      ?alpha: Numeric | nil,
+      ?power: Numeric | nil,
+      ?alternative: Symbol | String
+    ) -> UnequalPowerResult
+  end
+
+  module TTest
+    def self.one_sample: (
+      ?effect_size: Numeric | Symbol | String | nil,
+      ?sample_size: Numeric | nil,
+      ?alpha: Numeric | nil,
+      ?power: Numeric | nil,
+      ?alternative: Symbol | String
+    ) -> PowerResult
+
+    def self.paired: (
       ?effect_size: Numeric | Symbol | String | nil,
       ?sample_size: Numeric | nil,
       ?alpha: Numeric | nil,

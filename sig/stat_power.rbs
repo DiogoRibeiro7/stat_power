@@ -206,6 +206,48 @@ module StatPower
         noncentrality: Numeric
       ) -> Float
     end
+
+    module FDistribution
+      def self.pdf: (
+        Numeric x,
+        numerator_df: Numeric,
+        denominator_df: Numeric
+      ) -> Float
+
+      def self.cdf: (
+        Numeric x,
+        numerator_df: Numeric,
+        denominator_df: Numeric
+      ) -> Float
+
+      def self.survival: (
+        Numeric x,
+        numerator_df: Numeric,
+        denominator_df: Numeric
+      ) -> Float
+
+      def self.quantile: (
+        Numeric probability,
+        numerator_df: Numeric,
+        denominator_df: Numeric
+      ) -> Float
+    end
+
+    module NoncentralF
+      def self.cdf: (
+        Numeric x,
+        numerator_df: Numeric,
+        denominator_df: Numeric,
+        noncentrality: Numeric
+      ) -> Float
+
+      def self.survival: (
+        Numeric x,
+        numerator_df: Numeric,
+        denominator_df: Numeric,
+        noncentrality: Numeric
+      ) -> Float
+    end
   end
 
   module Solvers

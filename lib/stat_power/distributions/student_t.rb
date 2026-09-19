@@ -68,7 +68,7 @@ module StatPower
 
         return -Float::INFINITY if target.zero?
         return Float::INFINITY if target >= 1.0
-        return 0.0 if target == 0.5
+        return 0.0 if (target - 0.5).abs <= Float::EPSILON
         return Normal.quantile(target) if df.infinite?
 
         sign = target < 0.5 ? -1.0 : 1.0

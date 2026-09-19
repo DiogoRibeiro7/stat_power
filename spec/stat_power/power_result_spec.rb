@@ -8,7 +8,7 @@ RSpec.describe StatPower::PowerResult do
       effect_size: 0.5,
       alpha: 0.05,
       alternative: :two_sided,
-      method: "example"
+      analysis_method: "example"
     )
 
     expect(result.required_sample_size).to eq(32)

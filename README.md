@@ -1,39 +1,48 @@
 # stat_power
 
-Statistical power analysis, sample-size determination, and effect-size utilities for Ruby.
+Native Ruby statistical power analysis and sample-size determination.
 
 ## Status
 
 Early development. The public API is not yet stable.
 
-## Goals
+The first compatibility target is the established CRAN `pwr` package. The
+implementation is native Ruby and is validated against published formulas and
+reference numerical results rather than being a line-by-line source port.
 
-`stat_power` aims to provide mathematically explicit and well-tested power-analysis tools for Ruby, with particular emphasis on:
-
-- sample-size determination,
-- achieved-power calculations,
-- effect-size utilities,
-- inverse power problems,
-- reproducible numerical validation.
-
-The project avoids hiding statistical assumptions behind opaque defaults. Test direction, effect-size conventions, allocation assumptions, and numerical tolerances should be explicit.
-
-## Planned API
+## Example
 
 ```ruby
 require "stat_power"
 
-result = StatPower::TTest.two_sample(
+result = StatPower::NormalMean.solve(
   effect_size: 0.5,
   alpha: 0.05,
   power: 0.8
 )
 
 result.sample_size
-# => 64
+# => approximately 31.395
+
+result.required_sample_size
+# => 32
 ```
 
-The same test family should eventually support inverse problems, for example solving for power or effect size when sample size is known.
+As with CRAN `pwr`, one of the main analysis parameters is omitted and solved
+from the others.
+
+## Goals
+
+- parity with the statistical families provided by CRAN `pwr`,
+- idiomatic Ruby APIs,
+- sample-size determination and achieved-power calculations,
+- inverse power problems,
+- effect-size utilities,
+- explicit assumptions and numerical tolerances,
+- independently reproducible numerical validation,
+- later extensions beyond `pwr`.
+
+See [docs/pwr_parity.md](docs/pwr_parity.md) for the compatibility matrix.
 
 ## Development
 
@@ -58,7 +67,7 @@ bundle exec steep check
 
 ## Mathematical conventions
 
-The project's statistical and numerical conventions are documented in [docs/mathematical_conventions.md](docs/mathematical_conventions.md).
+See [docs/mathematical_conventions.md](docs/mathematical_conventions.md).
 
 ## Roadmap
 

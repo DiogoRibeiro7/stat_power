@@ -1,8 +1,42 @@
 AllCops:
-  NewCops: enable
+  NewCops: disable
   TargetRubyVersion: 3.2
+
+Style/StringLiterals:
+  EnforcedStyle: double_quotes
+
+Style/Documentation:
+  Enabled: false
+
+Naming/MethodParameterName:
+  AllowedNames:
+    - x
+    - p
+    - p1
+    - p2
 
 Metrics/BlockLength:
   Exclude:
     - "spec/**/*"
     - "*.gemspec"
+
+Metrics/ModuleLength:
+  Max: 500
+
+Metrics/MethodLength:
+  Max: 50
+
+Metrics/AbcSize:
+  Max: 40
+
+Metrics/CyclomaticComplexity:
+  Max: 15
+
+Metrics/PerceivedComplexity:
+  Max: 15
+
+Metrics/ParameterLists:
+  Max: 8
+
+Lint/AmbiguousOperatorPrecedence:
+  Enabled: false

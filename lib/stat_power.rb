@@ -7,7 +7,9 @@ require_relative "stat_power/errors"
 require_relative "stat_power/distributions/normal"
 require_relative "stat_power/solvers/bisection"
 require_relative "stat_power/effect_size/conventional"
+require_relative "stat_power/effect_size/proportion"
 require_relative "stat_power/normal_mean"
+require_relative "stat_power/proportion"
 
 module StatPower
 end

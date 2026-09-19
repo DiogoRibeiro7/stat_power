@@ -151,9 +151,7 @@ module StatPower
     def normalize_effect_size(value)
       return nil if value.nil?
 
-      if value.is_a?(String) || value.is_a?(Symbol)
-        return EffectSize::Conventional.resolve(test: :t, size: value)
-      end
+      return EffectSize::Conventional.resolve(test: :t, size: value) if value.is_a?(String) || value.is_a?(Symbol)
 
       Float(value)
     rescue ArgumentError, TypeError

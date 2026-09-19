@@ -83,9 +83,7 @@ module StatPower
       private_class_method :stabilize
 
       def validate_arguments!(x, a, b)
-        unless x.finite? && x.between?(0.0, 1.0)
-          raise StatPower::DomainError, "x must be finite and lie in [0, 1]"
-        end
+        raise StatPower::DomainError, "x must be finite and lie in [0, 1]" unless x.finite? && x.between?(0.0, 1.0)
 
         return if a.finite? && b.finite? && a.positive? && b.positive?
 

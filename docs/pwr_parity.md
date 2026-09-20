@@ -20,7 +20,7 @@ reference points.
 | `pwr.t2n.test` | `StatPower::TTest.two_sample_unequal` | Implemented |
 | `pwr.anova.test` | `StatPower::Anova.solve` | Implemented |
 | `pwr.r.test` | `StatPower::Correlation.solve` | Implemented |
-| `pwr.chisq.test` | chi-square power | Planned |
+| `pwr.chisq.test` | `StatPower::ChiSquare.solve` | Implemented |
 | `pwr.f2.test` | `StatPower::F2.solve` | Implemented |
 | `ES.h` | `StatPower::EffectSize::Proportion.cohen_h` | Implemented |
 | `ES.w1` | `StatPower::EffectSize::ChiSquare.goodness_of_fit` | Implemented |

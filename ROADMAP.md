@@ -36,10 +36,10 @@ method and include numerical parity tests.
 
 ## 0.2.x — Validation and usability
 
-- Automated parity fixtures generated from R `pwr`
+- [x] Automated parity fixtures derived from CRAN `pwr` references
 - Published Cohen examples
 - Cross-validation against statsmodels where applicable
-- Documented numerical tolerance policy
+- [x] Documented numerical tolerance policy
 - Stable result objects
 - User-facing method documentation
 - Benchmarks

@@ -1,0 +1,278 @@
+version: "pwr 1.3-0"
+
+cases:
+  - id: norm_power_two_sided
+    pwr_function: pwr.norm.test
+    reference: internal parity reference
+    call: normal_mean
+    arguments:
+      effect_size: 0.5
+      sample_size: 30
+      alpha: 0.05
+    expected:
+      field: power
+      value: 0.7819079987
+      tolerance: 1.0e-8
+
+  - id: norm_sample_size
+    pwr_function: pwr.norm.test
+    reference: inverse parity reference
+    call: normal_mean
+    arguments:
+      effect_size: 0.5
+      alpha: 0.05
+      power: 0.8
+    expected:
+      field: sample_size
+      value: 31.39544204
+      tolerance: 1.0e-6
+
+  - id: proportion_one_cohen_6_5
+    pwr_function: pwr.p.test
+    reference: Cohen exercise 6.5
+    call: proportion_one
+    arguments:
+      effect_size: 0.2
+      sample_size: 60
+      alpha: 0.05
+    expected:
+      field: power
+      value: 0.3408451241
+      tolerance: 1.0e-8
+
+  - id: proportion_one_cohen_6_8
+    pwr_function: pwr.p.test
+    reference: Cohen exercise 6.8
+    call: proportion_one
+    arguments:
+      effect_size: 0.2
+      alpha: 0.05
+      power: 0.95
+    expected:
+      field: sample_size
+      value: 324.8677274
+      tolerance: 1.0e-5
+
+  - id: proportion_two_cohen_6_1
+    pwr_function: pwr.2p.test
+    reference: Cohen exercise 6.1
+    call: proportion_two
+    arguments:
+      effect_size: 0.3
+      sample_size: 80
+      alpha: 0.05
+      alternative: greater
+    expected:
+      field: power
+      value: 0.5996777045
+      tolerance: 1.0e-8
+
+  - id: proportion_unequal_cohen_6_3
+    pwr_function: pwr.2p2n.test
+    reference: Cohen exercise 6.3
+    call: proportion_unequal
+    arguments:
+      effect_size: 0.3
+      sample_size1: 80
+      sample_size2: 245
+      alpha: 0.05
+      alternative: greater
+    expected:
+      field: power
+      value: 0.7532924
+      tolerance: 1.0e-7
+
+  - id: proportion_unequal_cohen_6_7
+    pwr_function: pwr.2p2n.test
+    reference: Cohen exercise 6.7
+    call: proportion_unequal
+    arguments:
+      effect_size: 0.2
+      sample_size1: 1600
+      sample_size2:
+      alpha: 0.01
+      power: 0.9
+      alternative: two_sided
+    expected:
+      field: sample_size2
+      value: 484.6646
+      tolerance: 1.0e-4
+
+  - id: t_one_cohen_2_5
+    pwr_function: pwr.t.test
+    reference: Cohen exercise 2.5
+    call: t_one
+    arguments:
+      effect_size: 0.2
+      sample_size: 60
+      alpha: 0.10
+    expected:
+      field: power
+      value: 0.4555817641
+      tolerance: 1.0e-7
+
+  - id: t_paired_cohen
+    pwr_function: pwr.t.test
+    reference: Cohen paired-sample exercise
+    call: t_paired
+    arguments:
+      effect_size: 0.5590169943749475
+      sample_size: 40
+      alpha: 0.05
+    expected:
+      field: power
+      value: 0.9315248253
+      tolerance: 1.0e-7
+
+  - id: t_two_cohen_2_1
+    pwr_function: pwr.t.test
+    reference: Cohen exercise 2.1
+    call: t_two
+    arguments:
+      effect_size: 0.7142857142857143
+      sample_size: 30
+      alpha: 0.05
+    expected:
+      field: power
+      value: 0.7764888766
+      tolerance: 1.0e-7
+
+  - id: t_two_cohen_2_10
+    pwr_function: pwr.t.test
+    reference: Cohen exercise 2.10
+    call: t_two
+    arguments:
+      effect_size: 0.3
+      alpha: 0.05
+      power: 0.75
+      alternative: greater
+    expected:
+      field: sample_size
+      value: 120.2232017
+      tolerance: 1.0e-5
+
+  - id: t_unequal_cohen_2_3
+    pwr_function: pwr.t2n.test
+    reference: Cohen exercise 2.3
+    call: t_unequal
+    arguments:
+      effect_size: 0.6
+      sample_size1: 90
+      sample_size2: 60
+      alpha: 0.05
+      alternative: greater
+    expected:
+      field: power
+      value: 0.9737261546
+      tolerance: 1.0e-7
+
+  - id: correlation_cohen_3_1
+    pwr_function: pwr.r.test
+    reference: Cohen exercise 3.1
+    call: correlation
+    arguments:
+      correlation: 0.3
+      sample_size: 50
+      alpha: 0.05
+    expected:
+      field: power
+      value: 0.5715558419
+      tolerance: 1.0e-8
+
+  - id: correlation_cohen_3_4
+    pwr_function: pwr.r.test
+    reference: Cohen exercise 3.4
+    call: correlation
+    arguments:
+      correlation: 0.3
+      alpha: 0.05
+      power: 0.8
+    expected:
+      field: sample_size
+      value: 84.07363774
+      tolerance: 1.0e-5
+
+  - id: anova_cohen_8_1
+    pwr_function: pwr.anova.test
+    reference: Cohen exercise 8.1
+    call: anova
+    arguments:
+      groups: 4
+      sample_size: 20
+      effect_size: 0.28
+      alpha: 0.05
+    expected:
+      field: power
+      value: 0.514979292
+      tolerance: 1.0e-8
+
+  - id: anova_cohen_8_10
+    pwr_function: pwr.anova.test
+    reference: Cohen exercise 8.10
+    call: anova
+    arguments:
+      groups: 4
+      effect_size: 0.28
+      alpha: 0.05
+      power: 0.8
+    expected:
+      field: sample_size
+      value: 35.75789452
+      tolerance: 1.0e-5
+
+  - id: f2_cohen_9_1
+    pwr_function: pwr.f2.test
+    reference: Cohen exercise 9.1
+    call: f2
+    arguments:
+      numerator_df: 5
+      denominator_df: 89
+      effect_size: 0.1111111111111111
+      alpha: 0.05
+    expected:
+      field: power
+      value: 0.6735857708
+      tolerance: 1.0e-8
+
+  - id: f2_denominator_df
+    pwr_function: pwr.f2.test
+    reference: inverse parity reference
+    call: f2
+    arguments:
+      numerator_df: 5
+      denominator_df:
+      effect_size: 0.1111111111111111
+      alpha: 0.05
+      power: 0.8
+    expected:
+      field: denominator_df
+      value: 115.1043085
+      tolerance: 1.0e-5
+
+  - id: chisq_cohen_7_1
+    pwr_function: pwr.chisq.test
+    reference: Cohen exercise 7.1
+    call: chi_square
+    arguments:
+      degrees_of_freedom: 3
+      effect_size: 0.289
+      sample_size: 100
+      alpha: 0.05
+    expected:
+      field: power
+      value: 0.6750776570037209
+      tolerance: 1.0e-10
+
+  - id: chisq_cohen_7_8
+    pwr_function: pwr.chisq.test
+    reference: Cohen exercise 7.8
+    call: chi_square
+    arguments:
+      degrees_of_freedom: 20
+      effect_size: 0.1
+      alpha: 0.05
+      power: 0.8
+    expected:
+      field: sample_size
+      value: 2096.079183370389
+      tolerance: 1.0e-5

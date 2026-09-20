@@ -6,6 +6,9 @@ All notable changes to this project will be documented in this file.
 
 ### Added
 
+- Fixture-driven CRAN `pwr` parity validation across all implemented solver families
+- Documented numerical tolerance and reference-provenance policy
+
 - Data-first power-curve generation via `StatPower::PowerCurve.generate`
 - Immutable `PowerCurvePoint` values for plotting-library-independent output
 

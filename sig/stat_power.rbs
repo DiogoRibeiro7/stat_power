@@ -121,6 +121,17 @@ module StatPower
     module Proportion
       def self.cohen_h: (p1: Numeric, p2: Numeric) -> Float
     end
+
+    module ChiSquare
+      def self.goodness_of_fit: (
+        null_probabilities: Array[Numeric],
+        alternative_probabilities: Array[Numeric]
+      ) -> Float
+
+      def self.association: (
+        probabilities: Array[Array[Numeric]]
+      ) -> Float
+    end
   end
 
   module NormalMean
@@ -231,6 +242,12 @@ module StatPower
     end
   end
 
+    module Gamma
+      def self.regularized_lower: (a: Numeric, x: Numeric) -> Float
+      def self.regularized_upper: (a: Numeric, x: Numeric) -> Float
+    end
+  end
+
   module Integration
     module AdaptiveSimpson
       def self.integrate: (
@@ -309,6 +326,27 @@ module StatPower
         Numeric x,
         numerator_df: Numeric,
         denominator_df: Numeric,
+        noncentrality: Numeric
+      ) -> Float
+    end
+
+    module ChiSquare
+      def self.pdf: (Numeric x, degrees_of_freedom: Numeric) -> Float
+      def self.cdf: (Numeric x, degrees_of_freedom: Numeric) -> Float
+      def self.survival: (Numeric x, degrees_of_freedom: Numeric) -> Float
+      def self.quantile: (Numeric probability, degrees_of_freedom: Numeric) -> Float
+    end
+
+    module NoncentralChiSquare
+      def self.cdf: (
+        Numeric x,
+        degrees_of_freedom: Numeric,
+        noncentrality: Numeric
+      ) -> Float
+
+      def self.survival: (
+        Numeric x,
+        degrees_of_freedom: Numeric,
         noncentrality: Numeric
       ) -> Float
     end

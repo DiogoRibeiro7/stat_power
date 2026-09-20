@@ -4,6 +4,8 @@ All notable changes to this project will be documented in this file.
 
 ## Unreleased
 
+## 0.1.0.alpha.3 - 2026-09-20
+
 ### Added
 
 - Contribution guide, code of conduct, and security policy
@@ -28,8 +30,13 @@ All notable changes to this project will be documented in this file.
 
 ### Fixed
 
-- Invalid union syntax in the `PowerCurve.generate` block signature that made
-  `sig/stat_power.rbs` unparseable by Steep
+- **`sig/stat_power.rbs` shipped in 0.1.0.alpha.2 was not valid RBS.** The
+  block signature for `PowerCurve.generate` used an unparenthesized union
+  return type, so any consumer feeding the packaged signatures to `rbs` or
+  Steep hit a parse error at line 282. Runtime behaviour was unaffected;
+  0.1.0.alpha.1 was not affected, because it predates `PowerCurve`. `rbs
+  validate` accepts the malformed form, which is why it reached a release;
+  `steep check` now runs in CI and in the release gate.
 - `EffectSize::ChiSquare.association` computed column marginals by mutating an
   accumulator array; it now uses `transpose`
 

@@ -7,8 +7,8 @@ fixes; there are no maintenance branches for older alphas.
 
 | Version        | Supported |
 | -------------- | --------- |
-| 0.1.0.alpha.2  | yes       |
-| < 0.1.0.alpha.2| no        |
+| 0.1.0.alpha.3  | yes       |
+| < 0.1.0.alpha.3| no        |
 
 ## Reporting a vulnerability
 

@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file.
 
 ## Unreleased
 
+### Changed
+
+- `ROADMAP.md` rewritten around the path to 1.0.0: what the version number
+  will guarantee, the API blockers that must be resolved first, a definition
+  of done, and explicit non-goals
+
 ## 0.1.0.alpha.3 - 2026-09-20
 
 ### Added

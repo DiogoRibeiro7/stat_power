@@ -60,3 +60,6 @@ Each migrated family should include:
 Parity means agreement in the statistical model and numerical result within a
 documented tolerance. Ruby naming and object design remain idiomatic rather
 than cloning R syntax.
+
+See [validation.md](validation.md) for the fixture suite, reference provenance,
+and numerical tolerance policy.

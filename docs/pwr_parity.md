@@ -25,7 +25,7 @@ reference points.
 | `ES.h` | `StatPower::EffectSize::Proportion.cohen_h` | Implemented |
 | `ES.w1` | `StatPower::EffectSize::ChiSquare.goodness_of_fit` | Implemented |
 | `ES.w2` | `StatPower::EffectSize::ChiSquare.association` | Implemented |
-| `plot.power.htest` | power-curve data generation | Planned |
+| `plot.power.htest` | `StatPower::PowerCurve.generate` | Implemented as data generation |
 
 ## Solver convention
 

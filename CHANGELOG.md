@@ -6,6 +6,9 @@ All notable changes to this project will be documented in this file.
 
 ### Added
 
+- Data-first power-curve generation via `StatPower::PowerCurve.generate`
+- Immutable `PowerCurvePoint` values for plotting-library-independent output
+
 - Chi-square power analysis compatible with `pwr.chisq.test`
 - Dedicated `ChiSquareResult` with total sample-size helper
 

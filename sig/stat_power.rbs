@@ -133,6 +133,16 @@ module StatPower
     def required_sample_size: () -> Integer
   end
 
+  class PowerCurvePoint
+    attr_reader sample_size: Float
+    attr_reader power: Float
+
+    def initialize: (
+      sample_size: Float,
+      power: Float
+    ) -> void
+  end
+
   module EffectSize
     module Conventional
       def self.resolve: (test: Symbol | String, size: Symbol | String) -> Float
@@ -264,6 +274,12 @@ module StatPower
       ?alpha: Numeric | nil,
       ?power: Numeric | nil
     ) -> ChiSquareResult
+  end
+
+  module PowerCurve
+    def self.generate: (
+      sample_sizes: Enumerable[Numeric]
+    ) { (Float) -> Numeric | PowerResult | UnequalPowerResult | AnovaResult | F2Result | ChiSquareResult } -> Array[PowerCurvePoint]
   end
 
   module SpecialFunctions

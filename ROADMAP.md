@@ -29,7 +29,7 @@
 - [x] `ES.h`
 - [x] `ES.w1`
 - [x] `ES.w2`
-- [ ] power-curve data equivalent to `plot.power.htest`
+- [x] power-curve data equivalent to `plot.power.htest`
 
 Each migrated family must support the inverse problems exposed by the reference
 method and include numerical parity tests.

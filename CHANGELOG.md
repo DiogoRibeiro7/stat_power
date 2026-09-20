@@ -6,6 +6,9 @@ All notable changes to this project will be documented in this file.
 
 ### Added
 
+- Chi-square power analysis compatible with `pwr.chisq.test`
+- Dedicated `ChiSquareResult` with total sample-size helper
+
 - Regularized incomplete gamma functions
 - Central and noncentral chi-square distribution utilities
 - Cohen's `w` effect-size helpers for goodness-of-fit and association tests

@@ -11,7 +11,7 @@
 - [x] Normal mean power analysis equivalent to `pwr.norm.test`
 - [x] Student t distribution utilities
 - [x] Noncentral t distribution utilities
-- [ ] Chi-square and noncentral chi-square utilities
+- [x] Chi-square and noncentral chi-square utilities
 - [x] F and noncentral F utilities
 
 ### pwr compatibility
@@ -27,8 +27,8 @@
 - [ ] `pwr.chisq.test`
 - [x] `pwr.f2.test`
 - [x] `ES.h`
-- [ ] `ES.w1`
-- [ ] `ES.w2`
+- [x] `ES.w1`
+- [x] `ES.w2`
 - [ ] power-curve data equivalent to `plot.power.htest`
 
 Each migrated family must support the inverse problems exposed by the reference

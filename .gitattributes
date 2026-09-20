@@ -1,0 +1,13 @@
+# Normalise every text file to LF in the repository and in the working tree, so
+# that lint results are identical on Linux, macOS and Windows.
+* text=auto eol=lf
+
+# Binary artefacts must never be line-ending converted.
+*.gem binary
+*.png binary
+*.jpg binary
+*.gz binary
+
+# Keep repository furniture out of GitHub's language statistics.
+docs/**      linguist-documentation
+spec/**      linguist-documentation=false

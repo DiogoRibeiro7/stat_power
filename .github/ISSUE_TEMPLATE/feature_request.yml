@@ -1,0 +1,46 @@
+name: Feature request
+description: Propose a new power-analysis family, effect size or API
+title: "[feature]: "
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Check [ROADMAP.md](https://github.com/DiogoRibeiro7/stat_power/blob/main/ROADMAP.md)
+        and [docs/pwr_parity.md](https://github.com/DiogoRibeiro7/stat_power/blob/main/docs/pwr_parity.md)
+        first, in case the method is already planned or implemented.
+
+  - type: textarea
+    id: proposal
+    attributes:
+      label: What should stat_power be able to do?
+    validations:
+      required: true
+
+  - type: input
+    id: equivalent
+    attributes:
+      label: Equivalent in another tool
+      description: The pwr function, R package, or G*Power test this corresponds to, if any.
+      placeholder: pwr.2p2n.test
+    validations:
+      required: false
+
+  - type: textarea
+    id: reference
+    attributes:
+      label: Reference for the formula
+      description: |
+        A citation, paper or textbook section that defines the method. A feature
+        cannot be implemented without a source to validate it against.
+    validations:
+      required: true
+
+  - type: textarea
+    id: api
+    attributes:
+      label: Proposed API
+      description: How you would expect to call it.
+      render: ruby
+    validations:
+      required: false

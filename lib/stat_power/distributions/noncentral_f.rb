@@ -110,7 +110,7 @@ module StatPower
           break if mixture_converged?(weight_sum, lower_weight, upper_weight)
         end
 
-        [[total, 0.0].max, 1.0].min
+        total.clamp(0.0, 1.0)
       end
       private_class_method :poisson_beta_mixture
 

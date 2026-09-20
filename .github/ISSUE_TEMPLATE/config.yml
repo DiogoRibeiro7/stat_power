@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Question or usage help
+    url: https://github.com/DiogoRibeiro7/stat_power/discussions
+    about: Ask how to use stat_power, or discuss statistical methodology.
+  - name: Security vulnerability
+    url: https://github.com/DiogoRibeiro7/stat_power/security/advisories/new
+    about: Report a vulnerability privately. Do not open a public issue.

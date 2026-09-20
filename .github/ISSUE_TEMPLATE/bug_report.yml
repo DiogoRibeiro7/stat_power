@@ -1,0 +1,52 @@
+name: Bug report
+description: Something raises, hangs or behaves incorrectly
+title: "[bug]: "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        If the library runs but returns a number you believe is wrong, please
+        use the **Numerical discrepancy** template instead.
+
+  - type: input
+    id: version
+    attributes:
+      label: stat_power version
+      placeholder: 0.1.0.alpha.2
+    validations:
+      required: true
+
+  - type: input
+    id: ruby
+    attributes:
+      label: Ruby version
+      description: Output of `ruby -v`.
+      placeholder: ruby 3.3.6 (2024-11-05 revision 75015d4c1f) [x86_64-linux]
+    validations:
+      required: true
+
+  - type: textarea
+    id: repro
+    attributes:
+      label: Reproduction
+      description: The smallest snippet that triggers the problem.
+      render: ruby
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behaviour
+    validations:
+      required: true
+
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual behaviour
+      description: Include the full backtrace if an exception was raised.
+      render: shell
+    validations:
+      required: true

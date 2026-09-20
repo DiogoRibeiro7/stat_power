@@ -1,6 +1,16 @@
 AllCops:
-  NewCops: disable
+  NewCops: enable
   TargetRubyVersion: 3.2
+  SuggestExtensions: false
+  Exclude:
+    - "vendor/**/*"
+    - "coverage/**/*"
+    - "pkg/**/*"
+
+# Line endings are normalised to LF by .gitattributes so that a lint run gives
+# the same answer on Linux, macOS and Windows.
+Layout/EndOfLine:
+  EnforcedStyle: lf
 
 Style/StringLiterals:
   EnforcedStyle: double_quotes
@@ -8,6 +18,8 @@ Style/StringLiterals:
 Style/Documentation:
   Enabled: false
 
+# Single-letter parameter names are the conventional notation in the statistical
+# literature these methods implement.
 Naming/MethodParameterName:
   AllowedNames:
     - x

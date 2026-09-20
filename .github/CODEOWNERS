@@ -1,0 +1,14 @@
+# Default owner for everything in the repository.
+*                       @DiogoRibeiro7
+
+# Numerical core: changes here require particular care over reference values
+# and tolerances.
+/lib/stat_power/distributions/      @DiogoRibeiro7
+/lib/stat_power/special_functions/  @DiogoRibeiro7
+/lib/stat_power/solvers/            @DiogoRibeiro7
+/spec/fixtures/                     @DiogoRibeiro7
+
+# Release and supply chain.
+/.github/workflows/     @DiogoRibeiro7
+/stat_power.gemspec     @DiogoRibeiro7
+/RELEASING.md           @DiogoRibeiro7

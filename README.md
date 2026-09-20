@@ -118,29 +118,39 @@ freeze candidate.
 
 ## Development
 
-Install dependencies:
+Set up the checkout:
 
 ```bash
-bundle install
+bin/setup
 ```
 
-Run the test suite:
+Open a console with the library loaded:
 
 ```bash
-bundle exec rspec
+bin/console
 ```
 
-Run lint and signature validation:
+Run everything CI runs:
 
 ```bash
-bundle exec rubocop
-bundle exec rbs validate
+bundle exec rake verify
 ```
 
-Validate that the library loads:
+That is the same as running each check individually:
 
 ```bash
-ruby -Ilib -e 'require "stat_power"'
+bundle exec rspec          # specs
+bundle exec rubocop        # lint
+bundle exec rbs validate   # signature syntax
+bundle exec steep check    # lib/ type checked against sig/
+```
+
+Measure test coverage. Instrumentation roughly doubles the runtime, so it is
+opt-in; CI enforces a minimum in a dedicated job.
+
+```bash
+COVERAGE=1 bundle exec rspec
+open coverage/index.html
 ```
 
 Build the gem locally:
@@ -148,6 +158,29 @@ Build the gem locally:
 ```bash
 gem build stat_power.gemspec
 ```
+
+## Contributing
+
+Contributions are welcome. Because this is a numerical library, the bar is
+reproducibility: every statistical result must be justified by a published
+formula or an independently generated reference value.
+
+See [CONTRIBUTING.md](CONTRIBUTING.md) for the workflow, the shape a new
+power-analysis family is expected to take, and how to supply reference values.
+
+Participation is governed by the [Code of Conduct](CODE_OF_CONDUCT.md).
+
+### Found a wrong number?
+
+If `stat_power` disagrees with `pwr`, R, G*Power or a textbook, that is the
+highest-priority class of bug here. Open an issue using the **Numerical
+discrepancy** template.
+
+## Security
+
+See [SECURITY.md](SECURITY.md) for supported versions and how to report a
+vulnerability privately. A numerically incorrect result is a bug, not a
+vulnerability; report those as ordinary issues.
 
 ## Mathematical conventions
 

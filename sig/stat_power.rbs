@@ -279,7 +279,7 @@ module StatPower
   module PowerCurve
     def self.generate: (
       sample_sizes: Enumerable[Numeric]
-    ) { (Float) -> Numeric | PowerResult | UnequalPowerResult | AnovaResult | F2Result | ChiSquareResult } -> Array[PowerCurvePoint]
+    ) { (Float) -> (Numeric | PowerResult | UnequalPowerResult | AnovaResult | F2Result | ChiSquareResult) } -> Array[PowerCurvePoint]
   end
 
   module SpecialFunctions

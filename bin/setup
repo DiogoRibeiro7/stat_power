@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+set -euo pipefail
+IFS=$'\n\t'
+
+cd "$(dirname "$0")/.."
+
+echo "Installing dependencies..."
+bundle install
+
+echo
+echo "Running the full verification suite..."
+bundle exec rake verify
+
+echo
+echo "Ready. Useful commands:"
+echo "  bin/console            interactive session with stat_power loaded"
+echo "  bundle exec rake       specs and rubocop"
+echo "  bundle exec rake verify specs, rubocop, rbs validate and steep check"

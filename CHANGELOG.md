@@ -6,6 +6,10 @@ All notable changes to this project will be documented in this file.
 
 ### Added
 
+- Regularized incomplete gamma functions
+- Central and noncentral chi-square distribution utilities
+- Cohen's `w` effect-size helpers for goodness-of-fit and association tests
+
 - General linear-model power analysis compatible with `pwr.f2.test`
 - Dedicated `F2Result` with implied total sample-size helpers
 

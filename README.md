@@ -17,13 +17,13 @@ gem install stat_power --prerelease
 or pin the exact alpha:
 
 ```bash
-gem install stat_power -v 0.1.0.alpha.1
+gem install stat_power -v 0.1.0.alpha.2
 ```
 
 With Bundler:
 
 ```ruby
-gem "stat_power", "0.1.0.alpha.1"
+gem "stat_power", "0.1.0.alpha.2"
 ```
 
 ## Status
@@ -41,9 +41,16 @@ Implemented compatibility currently includes:
 - `pwr.t.test`
 - `pwr.t2n.test`
 - `pwr.r.test`
+- `pwr.anova.test`
+- `pwr.f2.test`
+- `pwr.chisq.test`
+- `ES.h`
+- `ES.w1`
+- `ES.w2`
+- power-curve data generation equivalent in purpose to `plot.power.htest`
 
-The library also contains the numerical distribution machinery required for
-further power methods, including central/noncentral t and F distributions.
+The library also contains the numerical distribution machinery required by
+these methods, including central/noncentral t, F, and chi-square distributions.
 
 See [docs/pwr_parity.md](docs/pwr_parity.md) for the full compatibility matrix.
 

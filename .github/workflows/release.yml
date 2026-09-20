@@ -83,6 +83,7 @@ jobs:
           bundle exec rspec
           bundle exec rubocop
           bundle exec rbs validate
+          bundle exec steep check
 
       - name: Build gem
         id: build

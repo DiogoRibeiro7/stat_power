@@ -23,13 +23,13 @@ gem install stat_power --prerelease
 or pin the exact alpha:
 
 ```bash
-gem install stat_power -v 0.1.0.alpha.2
+gem install stat_power -v 0.1.0.alpha.3
 ```
 
 With Bundler:
 
 ```ruby
-gem "stat_power", "0.1.0.alpha.2"
+gem "stat_power", "0.1.0.alpha.3"
 ```
 
 ## Status

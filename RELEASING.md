@@ -63,7 +63,7 @@ The workflow is stored at `.github/workflows/release.yml`.
 9. Create and push the release tag. For the current release:
 
    ```bash
-   VERSION=0.1.0.alpha.2
+   VERSION=0.1.0.alpha.3
    git checkout main
    git pull --ff-only
    git tag "v${VERSION}"
@@ -90,7 +90,7 @@ the gem, do not create a new version merely to retry the same artifact.
 
 1. Open **Actions → Release gem**.
 2. Choose **Run workflow**.
-3. Enter the existing tag, for example `v0.1.0.alpha.2`.
+3. Enter the existing tag, for example `v0.1.0.alpha.3`.
 4. Run the workflow from `main`.
 
 The manual dispatch checks out the existing tag and publishes that exact
@@ -115,7 +115,7 @@ ruby -e 'require "stat_power"; puts StatPower::VERSION'
 For the current release the expected output is:
 
 ```text
-0.1.0.alpha.2
+0.1.0.alpha.3
 ```
 
 ## Failed releases after publication

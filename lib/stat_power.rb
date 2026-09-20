@@ -6,6 +6,7 @@ require_relative "stat_power/power_result"
 require_relative "stat_power/unequal_power_result"
 require_relative "stat_power/anova_result"
 require_relative "stat_power/f2_result"
+require_relative "stat_power/chi_square_result"
 require_relative "stat_power/errors"
 require_relative "stat_power/special_functions/beta"
 require_relative "stat_power/special_functions/gamma"
@@ -28,6 +29,7 @@ require_relative "stat_power/t_test_unequal"
 require_relative "stat_power/correlation"
 require_relative "stat_power/anova"
 require_relative "stat_power/f2"
+require_relative "stat_power/chi_square"
 
 module StatPower
 end

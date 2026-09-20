@@ -140,6 +140,9 @@ gem build stat_power.gemspec
 
 See [docs/mathematical_conventions.md](docs/mathematical_conventions.md).
 
+For numerical reference fixtures and tolerance rules, see
+[docs/validation.md](docs/validation.md).
+
 ## Roadmap
 
 See [ROADMAP.md](ROADMAP.md).

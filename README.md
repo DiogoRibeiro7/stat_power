@@ -1,5 +1,11 @@
 # stat_power
 
+[![CI](https://github.com/DiogoRibeiro7/stat_power/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/DiogoRibeiro7/stat_power/actions/workflows/ci.yml)
+[![RubyGems](https://img.shields.io/gem/v/stat_power?include_prereleases)](https://rubygems.org/gems/stat_power)
+[![Gem Downloads](https://img.shields.io/gem/dt/stat_power)](https://rubygems.org/gems/stat_power)
+[![Ruby](https://img.shields.io/badge/ruby-%3E%3D%203.2-CC342D?logo=ruby&logoColor=white)](https://www.ruby-lang.org/)
+[![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+
 Native Ruby statistical power analysis and sample-size determination.
 
 > **Alpha release:** `stat_power` is under active development. The public API

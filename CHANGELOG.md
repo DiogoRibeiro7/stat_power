@@ -4,26 +4,23 @@ All notable changes to this project will be documented in this file.
 
 ## Unreleased
 
+## 0.1.0.alpha.2 - 2026-09-20
+
 ### Added
-
-- Fixture-driven CRAN `pwr` parity validation across all implemented solver families
-- Documented numerical tolerance and reference-provenance policy
-
-- Data-first power-curve generation via `StatPower::PowerCurve.generate`
-- Immutable `PowerCurvePoint` values for plotting-library-independent output
-
-- Chi-square power analysis compatible with `pwr.chisq.test`
-- Dedicated `ChiSquareResult` with total sample-size helper
-
-- Regularized incomplete gamma functions
-- Central and noncentral chi-square distribution utilities
-- Cohen's `w` effect-size helpers for goodness-of-fit and association tests
-
-- General linear-model power analysis compatible with `pwr.f2.test`
-- Dedicated `F2Result` with implied total sample-size helpers
 
 - Balanced one-way ANOVA power analysis compatible with `pwr.anova.test`
 - Dedicated ANOVA result object with per-group and total sample-size helpers
+- General linear-model power analysis compatible with `pwr.f2.test`
+- Dedicated `F2Result` with implied total sample-size helpers
+- Regularized incomplete gamma functions
+- Central and noncentral chi-square distribution utilities
+- Cohen's `w` effect-size helpers for goodness-of-fit and association tests
+- Chi-square power analysis compatible with `pwr.chisq.test`
+- Dedicated `ChiSquareResult` with total sample-size helper
+- Data-first power-curve generation via `StatPower::PowerCurve.generate`
+- Immutable `PowerCurvePoint` values for plotting-library-independent output
+- Fixture-driven CRAN `pwr` parity validation across all implemented solver families
+- Documented numerical tolerance and reference-provenance policy
 
 ## 0.1.0.alpha.1 - 2026-09-19
 

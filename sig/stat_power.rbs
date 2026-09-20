@@ -113,6 +113,26 @@ module StatPower
     def required_total_sample_size: () -> Integer
   end
 
+  class ChiSquareResult
+    attr_reader degrees_of_freedom: Float
+    attr_reader sample_size: Float
+    attr_reader power: Float
+    attr_reader effect_size: Float
+    attr_reader alpha: Float
+    attr_reader analysis_method: String
+
+    def initialize: (
+      degrees_of_freedom: Float,
+      sample_size: Float,
+      power: Float,
+      effect_size: Float,
+      alpha: Float,
+      analysis_method: String
+    ) -> void
+
+    def required_sample_size: () -> Integer
+  end
+
   module EffectSize
     module Conventional
       def self.resolve: (test: Symbol | String, size: Symbol | String) -> Float
@@ -236,11 +256,20 @@ module StatPower
     ) -> F2Result
   end
 
+  module ChiSquare
+    def self.solve: (
+      degrees_of_freedom: Numeric,
+      ?effect_size: Numeric | Symbol | String | nil,
+      ?sample_size: Numeric | nil,
+      ?alpha: Numeric | nil,
+      ?power: Numeric | nil
+    ) -> ChiSquareResult
+  end
+
   module SpecialFunctions
     module Beta
       def self.regularized: (Numeric x, a: Numeric, b: Numeric) -> Float
     end
-  end
 
     module Gamma
       def self.regularized_lower: (a: Numeric, x: Numeric) -> Float

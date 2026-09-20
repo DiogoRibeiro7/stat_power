@@ -2,13 +2,12 @@
 
 This project uses prerelease versions until the public API is ready to stabilize.
 
-## One-time RubyGems trusted publisher setup
+## RubyGems trusted publishing
 
 RubyGems Trusted Publishing allows GitHub Actions to publish without storing a
 long-lived RubyGems API key.
 
-For the first release of `stat_power`, create a **pending trusted publisher**
-from the RubyGems.org account that should own the gem, using:
+The trusted publisher for `stat_power` must match:
 
 - Gem name: `stat_power`
 - Repository owner: `DiogoRibeiro7`
@@ -18,14 +17,11 @@ from the RubyGems.org account that should own the gem, using:
 
 The workflow is stored at `.github/workflows/release.yml`.
 
-After the first successful publication, the pending publisher becomes the
-trusted publisher for the gem.
-
 ## Alpha release checklist
 
 1. Ensure all CI jobs are green on `main`.
 2. Confirm `lib/stat_power/version.rb` contains the intended version.
-3. Update `CHANGELOG.md` with the release date.
+3. Move the release entries in `CHANGELOG.md` out of `Unreleased`.
 4. Build the gem locally:
 
    ```bash
@@ -47,19 +43,20 @@ trusted publisher for the gem.
 7. Run a smoke test against the installed package:
 
    ```bash
-   ruby -e 'require "stat_power"; p StatPower::VERSION'
+   ruby -e 'require "stat_power"; puts StatPower::VERSION'
    ```
 
-8. Confirm the RubyGems pending/trusted publisher is configured for
+8. Confirm the RubyGems trusted publisher still matches
    `.github/workflows/release.yml` and the `release` environment.
 
-9. Create and push the release tag. The tag must match the version exactly:
+9. Create and push the release tag. For the current release:
 
    ```bash
+   VERSION=0.1.0.alpha.2
    git checkout main
    git pull --ff-only
-   git tag v0.1.0.alpha.1
-   git push origin v0.1.0.alpha.1
+   git tag "v${VERSION}"
+   git push origin "v${VERSION}"
    ```
 
 Pushing the tag triggers the release workflow. It validates that:
@@ -75,22 +72,20 @@ The workflow requests short-lived RubyGems credentials through OIDC, pushes the
 already-built gem artifact with `gem push`, and creates a GitHub Release.
 Prerelease versions are marked as prereleases on GitHub automatically.
 
-## Retrying a failed first release
+## Retrying a failed release
 
-If the release tag already exists but the workflow failed before RubyGems
-accepted the gem, **do not create another tag just to rerun the same alpha**.
-
-After the workflow fix is merged into `main`:
+If a release tag already exists but the workflow fails before RubyGems accepts
+the gem, do not create a new version merely to retry the same artifact.
 
 1. Open **Actions → Release gem**.
 2. Choose **Run workflow**.
-3. Enter the existing tag, for example `v0.1.0.alpha.1`.
+3. Enter the existing tag, for example `v0.1.0.alpha.2`.
 4. Run the workflow from `main`.
 
 The manual dispatch checks out the existing tag and publishes that exact
 artifact while using the latest release workflow definition from `main`.
 
-Once `0.1.0.alpha.1` appears on RubyGems.org, that version is immutable.
+Once a version appears on RubyGems.org, it is immutable and must not be reused.
 
 ## After publishing
 
@@ -106,14 +101,13 @@ Then confirm:
 ruby -e 'require "stat_power"; puts StatPower::VERSION'
 ```
 
-The expected output for the first alpha is:
+For the current release the expected output is:
 
 ```text
-0.1.0.alpha.1
+0.1.0.alpha.2
 ```
 
 ## Failed releases after publication
 
 Once a version exists on RubyGems.org, do not overwrite or reuse that version.
-Increment the prerelease version, for example from `0.1.0.alpha.1` to
-`0.1.0.alpha.2`, and create a new tag.
+Increment the prerelease version and create a new tag.

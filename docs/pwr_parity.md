@@ -23,8 +23,8 @@ reference points.
 | `pwr.chisq.test` | chi-square power | Planned |
 | `pwr.f2.test` | `StatPower::F2.solve` | Implemented |
 | `ES.h` | `StatPower::EffectSize::Proportion.cohen_h` | Implemented |
-| `ES.w1` | Cohen w for goodness of fit | Planned |
-| `ES.w2` | Cohen w for contingency tables | Planned |
+| `ES.w1` | `StatPower::EffectSize::ChiSquare.goodness_of_fit` | Implemented |
+| `ES.w2` | `StatPower::EffectSize::ChiSquare.association` | Implemented |
 | `plot.power.htest` | power-curve data generation | Planned |
 
 ## Solver convention

@@ -8,7 +8,7 @@ group :development, :test do
   gem "rake", "~> 13.2"
   gem "rbs", "~> 3.9", require: false
   gem "rspec", "~> 3.13"
-  gem "rubocop", "~> 1.68.0", require: false
+  gem "rubocop", "~> 1.91.0", require: false
   gem "simplecov", "~> 0.22.0", require: false
   gem "steep", "~> 1.9", require: false
 end

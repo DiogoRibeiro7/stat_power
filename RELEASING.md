@@ -19,7 +19,18 @@ The workflow is stored at `.github/workflows/release.yml`.
 
 ## Alpha release checklist
 
-1. Ensure all CI jobs are green on `main`.
+1. Ensure all CI jobs are green on `main`, and that the local checkout is
+   actually at that commit:
+
+   ```bash
+   git checkout main
+   git pull --ff-only
+   bundle exec rake verify
+   ```
+
+   Tagging a stale checkout is the most common way this release fails: the
+   tag lands on an old commit and the version guard rejects it.
+
 2. Confirm `lib/stat_power/version.rb` contains the intended version.
 3. Move the release entries in `CHANGELOG.md` out of `Unreleased`.
 4. Build the gem locally:

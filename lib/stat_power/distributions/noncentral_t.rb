@@ -48,7 +48,7 @@ module StatPower
           )
         end
 
-        [[result, 0.0].max, 1.0].min
+        result.clamp(0.0, 1.0)
       end
 
       # Survival function P(T > x).

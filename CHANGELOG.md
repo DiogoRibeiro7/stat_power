@@ -4,6 +4,35 @@ All notable changes to this project will be documented in this file.
 
 ## Unreleased
 
+### Added
+
+- Contribution guide, code of conduct, and security policy
+- Issue templates, including a dedicated numerical-discrepancy report
+- Pull request template requiring independent numerical validation
+- `CODEOWNERS` and Dependabot configuration for Bundler and GitHub Actions
+- CodeQL analysis workflow
+- `bin/setup` and `bin/console` developer scripts
+- `rake verify` task running every check that CI runs
+- Steep type checking of `lib/` against `sig/`, now enforced in CI
+- SimpleCov line and branch coverage with an enforced minimum
+- `.gitattributes`, `.editorconfig`, and `.ruby-version` for reproducible
+  formatting and tooling across platforms
+
+### Changed
+
+- CI now runs lint, type check, and coverage as dedicated jobs, declares
+  least-privilege permissions, and cancels superseded runs
+- RuboCop runs with `NewCops: enable`
+- Gem metadata now includes a contact address, bug tracker, and versioned
+  source URI; maintainer-only files are no longer packaged
+
+### Fixed
+
+- Invalid union syntax in the `PowerCurve.generate` block signature that made
+  `sig/stat_power.rbs` unparseable by Steep
+- `EffectSize::ChiSquare.association` computed column marginals by mutating an
+  accumulator array; it now uses `transpose`
+
 ## 0.1.0.alpha.2 - 2026-09-20
 
 ### Added

@@ -1,6 +1,22 @@
+# Bundler
 /.bundle/
 /vendor/bundle/
-/coverage/
+# stat_power is a library, so the lockfile is not committed: CI must resolve
+# dependencies fresh against the constraints in the gemspec and Gemfile.
+/Gemfile.lock
+
+# Build artefacts
 /pkg/
+/checksums/
 *.gem
+
+# Test and analysis output
+/coverage/
+/.steep/
+/.yardoc/
+/doc/
+/.benchmarks/
+
+# Editor and OS
 .ruby-lsp/
+.DS_Store

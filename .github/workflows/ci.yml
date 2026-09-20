@@ -6,37 +6,109 @@ on:
   pull_request:
     branches: [main]
 
+# Superseded runs on the same branch are cancelled; runs on main are not, so
+# that every commit on the default branch keeps a status.
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: ${{ github.ref != 'refs/heads/main' }}
+
+permissions:
+  contents: read
+
 jobs:
   test:
+    name: Test (Ruby ${{ matrix.ruby }})
     runs-on: ubuntu-latest
     strategy:
+      fail-fast: false
       matrix:
         ruby: ["3.2", "3.3", "3.4"]
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
+        with:
+          persist-credentials: false
+
       - uses: ruby/setup-ruby@v1
         with:
           ruby-version: ${{ matrix.ruby }}
           bundler-cache: true
-      - run: bundle exec rspec
-      - run: bundle exec rubocop
 
-  typecheck:
+      - name: Run specs
+        run: bundle exec rspec --format progress
+
+  lint:
+    name: Lint
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
+        with:
+          persist-credentials: false
+
       - uses: ruby/setup-ruby@v1
         with:
           ruby-version: "3.3"
           bundler-cache: true
-      - run: bundle exec rbs validate
-      - run: ruby -Ilib -e 'require "stat_power"'
 
-  package:
+      - name: RuboCop
+        run: bundle exec rubocop --format github
+
+  typecheck:
+    name: Type check
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
+        with:
+          persist-credentials: false
+
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: "3.3"
+          bundler-cache: true
+
+      - name: Validate RBS signatures
+        run: bundle exec rbs validate
+
+      - name: Type check lib against sig
+        run: bundle exec steep check
+
+      - name: Confirm the library loads
+        run: ruby -Ilib -e 'require "stat_power"'
+
+  coverage:
+    name: Coverage
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          persist-credentials: false
+
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: "3.3"
+          bundler-cache: true
+
+      - name: Run specs with coverage
+        env:
+          COVERAGE: "1"
+        run: bundle exec rspec --format progress
+
+      - name: Upload coverage report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage
+          path: coverage/
+          retention-days: 14
+
+  package:
+    name: Package
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          persist-credentials: false
+
       - uses: ruby/setup-ruby@v1
         with:
           ruby-version: "3.3"

@@ -45,14 +45,7 @@ module StatPower
       def association(probabilities:)
         table = probability_table!(probabilities)
         row_totals = table.map(&:sum)
-        column_count = table.first.length
-        column_totals = Array.new(column_count, 0.0)
-
-        table.each do |row|
-          row.each_with_index do |value, column|
-            column_totals[column] += value
-          end
-        end
+        column_totals = table.transpose.map(&:sum)
 
         if row_totals.any?(&:zero?) || column_totals.any?(&:zero?)
           raise StatPower::DomainError,
